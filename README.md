@@ -1,50 +1,51 @@
-# Welcome to your Expo app 👋
+# 📚 Organizador de Estudos
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Um aplicativo inovador desenvolvido com **React Native** e **Expo** para ajudar estudantes a organizar, planejar e acompanhar seus estudos de forma eficiente.
 
-## Get started
+## 🚀 Acesso Rápido
 
-1. Install dependencies
+**Versão Web:** [organizador-de-estudos-mu.vercel.app](https://organizador-de-estudos-mu.vercel.app/)  
+**Versão App:** Disponível em breve na Play Store e App Store
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## 📱 Sobre o Projeto
 
-   ```bash
-   npx expo start
-   ```
+O Organizador de Estudos é uma ferramenta completa para:
 
-In the output, you'll find options to open the app in a
+✅ **Criar cronogramas** - Organize suas disciplinas e tópicos de estudo  
+✅ **Definir metas** - Estabeleça objetivos e acompanhe seu progresso  
+✅ **Gerenciar tempo** - Distribua seu tempo de estudo de forma inteligente  
+✅ **Acompanhar desempenho** - Visualize estatísticas e evolução do aprendizado  
+✅ **Sincronizar dados** - Acesse seus dados em qualquer dispositivo
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🛠️ Tecnologias Utilizadas
 
-## Get a fresh project
+- **React Native** - Framework para desenvolvimento mobile
+- **Expo** - Plataforma para aplicativos React Native
+- **TypeScript** - Tipagem estática para JavaScript
+- **Vercel** - Deploy e hospedagem da versão web : https://organizador-de-estudos-mu.vercel.app/
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 🎯 O que Você Consegue Fazer
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+- 📅 **Criar cronogramas** - Organize suas disciplinas e tópicos de estudo
+- 📊 **Criar Tarefas** - Visualize sua Tarefas e desempenho
+- ⏱️ **Gerenciar tempo** - Controle suas sessões de estudo
+- 💾 **Sincronizar dados** - Acesse em qualquer dispositivo (web ou mobile)
+- � **Definir metas** - Estabeleça objetivos e acompanhe o cumprimento
 
-## Learn more
+---
 
-To learn more about developing your project with Expo, look at the following resources:
+## 👨‍💻 Autor
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+**Victor Tavares**  
+GitHub: [@vicortavares824](https://github.com/vicortavares824)  
+Projeto: [AppOrganizador](https://github.com/vicortavares824/AppOrganizador)
 
-## Join the community
+---
 
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+**Última atualização:** 10 de abril de 2026
