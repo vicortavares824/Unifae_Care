@@ -1,27 +1,29 @@
 // @ts-check
-import React, { memo, useEffect, useState } from "react";
-import { Platform, StyleSheet, type ViewStyle,Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import {
-  Canvas,
-  Group,
   Blur,
-  ColorMatrix,
-  Paint,
-  Oval,
+  Canvas,
   Circle,
+  ColorMatrix,
+  Group,
+  Oval,
+  Paint,
   RoundedRect,
 } from "@shopify/react-native-skia";
+import { SymbolView } from "expo-symbols";
+import React, { memo, useEffect, useState } from "react";
+import { Platform, StyleSheet, Text, View , type ViewStyle } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
-  useSharedValue,
-  useAnimatedStyle,
-  withSpring,
-  interpolate,
-  useDerivedValue,
   clamp,
+  interpolate,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withSpring,
   WithSpringConfig,
 } from "react-native-reanimated";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
-import { SymbolView } from "expo-symbols";
+import { scheduleOnRN } from "react-native-worklets";
 import {
   DEFAULT_BLOB_COLOR,
   DEFAULT_ICON_COLOR,
@@ -36,8 +38,6 @@ import type {
   IGooeySwitch,
   IShadowOval,
 } from "./types";
-import { scheduleOnRN } from "react-native-worklets";
-import { Ionicons } from "@expo/vector-icons";
 
 const AnimatedMainOval: React.FC<ICoreOval> &
   React.FunctionComponent<ICoreOval> = ({
@@ -137,8 +137,7 @@ const AnimatedBridge: React.FC<IAnimatedBridge> &
   );
 };
 
-export const GooeySwitch: React.FC<IGooeySwitch> &
-  React.FunctionComponent<IGooeySwitch> = memo<IGooeySwitch>(
+export const GooeySwitch = memo<React.FC<IGooeySwitch>>(
   ({
     active,
     onToggle,
@@ -206,7 +205,7 @@ export const GooeySwitch: React.FC<IGooeySwitch> &
         progress.value = withSpring<number>(currentActive ? 1 : 0, spring);
         isOn.value = currentActive;
       }
-    }, [currentActive]);
+    }, [currentActive, isDragging.value, isOn, progress, spring]);
 
     const mainCircleX = useDerivedValue<number>(() =>
       interpolate(progress.value, [0, 1], [LEFT_X, RIGHT_X]),
@@ -405,10 +404,10 @@ export const GooeySwitch: React.FC<IGooeySwitch> &
           weight="bold"
         />
       ) : (
-        <>
-          <Ionicons name="checkmark" size={ICON_SIZE} color={iconTint} />
-          <Text>Cadastro</Text>
-        </>
+        <View style={{ alignItems: "center", flexDirection: "row" }}>
+          <Ionicons name="person-add-outline" size={X_ICON_SIZE} color={iconTint} />
+          <Text style={{marginLeft: 2, color: iconTint, fontSize: 12 }}>Cadastro</Text>
+        </View>
       );
 
     const defaultInactiveIcon = () =>
@@ -420,9 +419,10 @@ export const GooeySwitch: React.FC<IGooeySwitch> &
           weight="semibold"
         />
       ) : (
-        <>
-          <Ionicons name="close-outline" size={X_ICON_SIZE} color={iconTint} />
-        </>
+       <View style={{ alignItems: "center", flexDirection: "row" }}>
+          <Ionicons name="person-outline" size={X_ICON_SIZE} color={iconTint} />
+          <Text style={{ marginLeft: 4, color: iconTint, fontSize: 12 }}>Login</Text>
+        </View>
       );
 
     return (
@@ -515,9 +515,9 @@ export const GooeySwitch: React.FC<IGooeySwitch> &
   },
 );
 
-export default memo<
-  React.FC<IGooeySwitch> & React.FunctionComponent<IGooeySwitch>
->(GooeySwitch);
+GooeySwitch.displayName = "GooeySwitch";
+
+export default GooeySwitch;
 
 const styles = StyleSheet.create({
   container: {
@@ -530,6 +530,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
+  
   },
   iconWrapper: {
     position: "absolute",
