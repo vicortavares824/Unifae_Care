@@ -29,10 +29,10 @@ export default function Cadastro() {
           <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' />
           <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' />
           <Check title='Aceitar os termos' description='Termos de uso' />
-          <View style={{ paddingBottom: 30 }}>
+          <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor="#8369f5"
-              width={300}
+              width={270}
               isLoading={isLoading}
               onPress={handleLogin}
               loadingText="Cadastrando..."
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     alignSelf: 'center',
     width: '90%',
-    height: 600,
+    height: 530,
   },
   fundo: {
     width: '100%',

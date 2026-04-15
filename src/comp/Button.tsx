@@ -33,10 +33,9 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
     backgroundColor: "#fff",
-    paddingVertical: 16,
-    paddingHorizontal: 32,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
     borderRadius: 16,
   },
   btnText: {

@@ -36,10 +36,10 @@ export default function Form({ title, description, tipo = 'email-address', icon 
           <AnimatedInputBar
             placeholders={PLACEHOLDERS}
             value={text}
-            animationInterval={1000} // Aumentado para dar tempo de ler a descrição
+            animationInterval={1000} 
             onChangeText={setText}
             selectionColor={"#353535"}
-            keyboardType={tipo} // Agora respeita o tipo de teclado
+            keyboardType={tipo} 
             placeholderStyle={styles.placeholderStyle}
           />
         </View>

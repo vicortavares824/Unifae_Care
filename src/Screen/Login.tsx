@@ -31,7 +31,7 @@ export default function Login() {
           <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor="#8369f5"
-              width={300}
+              width={270}
               isLoading={isLoading}
               onPress={handleLogin}
               loadingText="Entrando..."
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     alignSelf: 'center',
     width: '90%',
-    height: 560,
+    height: 530,
   },
   fundo: {
     width: '100%',

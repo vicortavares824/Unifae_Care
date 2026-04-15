@@ -23,7 +23,7 @@ export default function HomeTabs() {
         screenOptions={{
           headerShown: true,
           headerTitle: "Organizador de Estudos",
-          headerStyle: { backgroundColor: "#8369f5" },
+          headerStyle: { backgroundColor: "#8369f5"},
           headerTintColor: "#fff",
         }}
       >
