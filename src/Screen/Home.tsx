@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CurvedBottomTabs } from "@/componente/base/curved-bottom-tabs";
+import { theme } from "@/styles/global";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,76 +24,76 @@ export default function HomeTabs() {
         screenOptions={{
           headerShown: true,
           headerTitle: "Organizador de Estudos",
-          headerStyle: { backgroundColor: "#8369f5"},
-          headerTintColor: "#fff",
+          headerStyle: { backgroundColor: theme.colors.primary },
+          headerTintColor: theme.colors.white,
         }}
       >
         <Tab.Screen
           name="home"
-          component={() => <ScreenPlaceholder name="Início" color="#f8f9fa" />}
+          component={() => (<ScreenPlaceholder name="Início" color={theme.colors.white} />)}
           options={{
             title: "Home",
             tabBarIcon: ({ focused }) => (
               <Ionicons
                 name={focused ? "home" : "home-outline"}
                 size={20}
-                color={focused ? "#FFFFFF" : "#B9B9B9"}
+                color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
             ),
           }}
         />
         <Tab.Screen
           name="tasks"
-          component={() => <ScreenPlaceholder name="Tarefas" color="#f8f9fa" />}
+          component={() => (<ScreenPlaceholder name="Tarefas" color={theme.colors.white} />)}
           options={{
             title: "Tarefas",
             tabBarIcon: ({ focused }) => (
               <Ionicons
                 name={focused ? "checkbox" : "checkbox-outline"}
                 size={20}
-                color={focused ? "#FFFFFF" : "#B9B9B9"}
+                color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
             ),
           }}
         />
         <Tab.Screen
           name="subjects"
-          component={() => <ScreenPlaceholder name="Materias" color="#f8f9fa" />}
+          component={() => (<ScreenPlaceholder name="Materias" color={theme.colors.white} />)}
           options={{
             title: "Materiais",
             tabBarIcon: ({ focused }) => (
               <Ionicons
                 name={focused ? "school" : "school-outline"}
                 size={20}
-                color={focused ? "#FFFFFF" : "#B9B9B9"}
+                color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
             ),
           }}
         />
         <Tab.Screen
           name="notes"
-          component={() => <ScreenPlaceholder name="Anotações" color="#f8f9fa" />}
+          component={() => (<ScreenPlaceholder name="Anotações" color={theme.colors.white} />)}
           options={{
             title: "Anotações",
             tabBarIcon: ({ focused }) => (
               <Ionicons
                 name={focused ? "book" : "book-outline"}
                 size={20}
-                color={focused ? "#FFFFFF" : "#B9B9B9"}
+                color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
             ),
           }}
         />
         <Tab.Screen
           name="profile"
-          component={() => <ScreenPlaceholder name="Perfil" color="#f8f9fa" />}
+          component={() => (<ScreenPlaceholder name="Perfil" color={theme.colors.white} />)}
           options={{
             title: "Perfil",
             tabBarIcon: ({ focused }) => (
               <Ionicons
                 name={focused ? "person" : "person-outline"}
                 size={20}
-                color={focused ? "#FFFFFF" : "#B9B9B9"}
+                color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
             ),
           }}
@@ -111,6 +112,6 @@ const styles = StyleSheet.create({
   placeholderText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "#333",
+    color: theme.colors.text,
   },
 });
