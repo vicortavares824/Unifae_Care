@@ -1,3 +1,4 @@
+import { theme } from "@/styles/global";
 import { Text, View ,StyleSheet} from "react-native";
 
 interface BarraTopProps{
@@ -14,7 +15,7 @@ export default function BarraTop({ title, description }: BarraTopProps) {
 }
 const styles = StyleSheet.create({
     texto:{
-        color: '#090D20',
+        color: theme.colors.text,
         fontSize: 16,
         fontWeight: 'bold',
     },
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
         paddingBottom: 16,  
     },
     description:{
-        color: '#8a8888ff',
+        color: theme.colors.textSecondary,
         fontSize: 16,
         paddingTop:6
     }
