@@ -13,8 +13,8 @@ export default function Formulario() {
         <GestureHandlerRootView style={styles.container}>
 
             <View style={styles.header}>
-                <Text style={styles.title}>Seja Bem vindo</Text>
-                <Text style={styles.title}>ao Organizador de Estudos</Text>
+                <Text style={styles.title}>Seja Bem-vindo</Text>
+                <Text style={styles.title}>A UNIFAE Care</Text>
                 <GooeySwitch
                     active={isCadastro}
                     onToggle={setIsCadastro}

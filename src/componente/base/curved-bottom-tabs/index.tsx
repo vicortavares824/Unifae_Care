@@ -36,7 +36,7 @@ import {
   VIEWPORT_HEIGHT,
   VIEWPORT_WIDTH,
 } from "./helper";
-
+import { theme } from "@/styles/global";
 const FloatingButtonComponent: React.FC<FloatingButtonComponentProps> =
   memo<FloatingButtonComponentProps>(
     ({
@@ -201,12 +201,12 @@ const CurvedBottomTabsCore: React.FC<CurvedBottomTabsProps> =
       currentIndex,
       onPress,
       gradient,
-      barHeight = 9,
+      barHeight = 12,
       buttonScale = 6,
       activeColor = "#ffffff",
       inactiveColor = "#cccccc",
       labelColor = "#cccccc",
-      textSize = 12,
+      textSize = 12.8,
       fontFamily,
       hideWhenKeyboardShown = false,
       animation = { damping: 12, stiffness: 120, mass: 0.5 },
@@ -428,7 +428,7 @@ export const CurvedBottomTabs: React.FC<
       state,
       descriptors,
       navigation,
-      gradients = ["#8369f5", "#8369f5"],
+      gradients = [theme.colors.primary, theme.colors.primary],
     }) => {
       const tabs: Tab[] = state.routes.map((route, index) => {
         const { options } = descriptors[route.key];

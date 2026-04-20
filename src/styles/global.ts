@@ -1,6 +1,8 @@
+
+
 export const theme = {
   colors: {
-    primary: "#8369f5",
+    primary: "#28782D",
     background: "#ffffff",
     text: "#1f1f1f",
     textSecondary: "#8a8888",
@@ -9,6 +11,7 @@ export const theme = {
     black: "#000000",
     focused: "#FFFFFF",
     unfocused: "#B9B9B9",
+    Background2: "#eeeeeeff",
   },
 };
 

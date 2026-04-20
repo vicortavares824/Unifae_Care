@@ -38,7 +38,6 @@ import type {
   IGooeySwitch,
   IShadowOval,
 } from "./types";
-
 const AnimatedMainOval: React.FC<ICoreOval> &
   React.FunctionComponent<ICoreOval> = ({
   cx,

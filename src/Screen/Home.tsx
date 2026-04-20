@@ -23,7 +23,7 @@ export default function HomeTabs() {
         tabBar={(props) => <CurvedBottomTabs {...props} />}
         screenOptions={{
           headerShown: true,
-          headerTitle: "Organizador de Estudos",
+          headerTitle: "Fisioterapia Unifae",
           headerStyle: { backgroundColor: theme.colors.primary },
           headerTintColor: theme.colors.white,
         }}
