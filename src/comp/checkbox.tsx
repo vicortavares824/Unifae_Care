@@ -1,13 +1,19 @@
-import { View, Text, Pressable, StyleSheet,TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useState } from "react";
 import CheckBox from "@/componente/organisms/check-box";
-interface CheckProps{
+interface CheckProps {
   title: string;
   description: string;
 }
 
-export default function Check({title, description}: CheckProps) {
+export default function Check({ title, description }: CheckProps) {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -61,7 +67,7 @@ const styles = StyleSheet.create({
     fontFamily: "HelveticaNowDisplay",
   },
   forgotPassword: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
     paddingRight: 28,
   },
   link: {

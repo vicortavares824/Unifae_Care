@@ -1,11 +1,17 @@
-import { View, Text, Pressable, StyleSheet,TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Pressable,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import CheckBox from "@/componente/organisms/check-box";
 import { theme } from "@/styles/global";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../router/Router";
-interface CheckProps{
+interface CheckProps {
   title: string;
   description: string;
   Navegacao?: keyof RootStackParamList;
@@ -13,8 +19,13 @@ interface CheckProps{
   onPress: () => void;
 }
 
-
-export default function Check({title, description, Navegacao, checked, onPress}: CheckProps) {
+export default function Check({
+  title,
+  description,
+  Navegacao,
+  checked,
+  onPress,
+}: CheckProps) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <GestureHandlerRootView>
@@ -33,7 +44,16 @@ export default function Check({title, description, Navegacao, checked, onPress}:
           </View>
         </Pressable>
 
-        <TouchableOpacity style={styles.forgotPassword}  onPress={() => {if (Navegacao) {navigation.navigate(Navegacao);} else {alert('Navegação não definida');}}}>
+        <TouchableOpacity
+          style={styles.forgotPassword}
+          onPress={() => {
+            if (Navegacao) {
+              navigation.navigate(Navegacao);
+            } else {
+              alert("Navegação não definida");
+            }
+          }}
+        >
           <Text style={styles.link}>{description}</Text>
         </TouchableOpacity>
       </View>
@@ -66,7 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: "HelveticaNowDisplay",
   },
   forgotPassword: {
-    marginLeft: 'auto',
+    marginLeft: "auto",
   },
   link: {
     color: theme.colors.primary,

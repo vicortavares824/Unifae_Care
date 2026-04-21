@@ -12,7 +12,7 @@ import {
 } from "@shopify/react-native-skia";
 import { SymbolView } from "expo-symbols";
 import React, { memo, useEffect, useState } from "react";
-import { Platform, StyleSheet, Text, View , type ViewStyle } from "react-native";
+import { Platform, StyleSheet, Text, View, type ViewStyle } from "react-native";
 import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   clamp,
@@ -404,8 +404,14 @@ export const GooeySwitch = memo<React.FC<IGooeySwitch>>(
         />
       ) : (
         <View style={{ alignItems: "center", flexDirection: "row" }}>
-          <Ionicons name="person-add-outline" size={X_ICON_SIZE} color={iconTint} />
-          <Text style={{marginLeft: 2, color: iconTint, fontSize: 12 }}>Cadastro</Text>
+          <Ionicons
+            name="person-add-outline"
+            size={X_ICON_SIZE}
+            color={iconTint}
+          />
+          <Text style={{ marginLeft: 2, color: iconTint, fontSize: 12 }}>
+            Cadastro
+          </Text>
         </View>
       );
 
@@ -418,9 +424,11 @@ export const GooeySwitch = memo<React.FC<IGooeySwitch>>(
           weight="semibold"
         />
       ) : (
-       <View style={{ alignItems: "center", flexDirection: "row" }}>
+        <View style={{ alignItems: "center", flexDirection: "row" }}>
           <Ionicons name="person-outline" size={X_ICON_SIZE} color={iconTint} />
-          <Text style={{ marginLeft: 4, color: iconTint, fontSize: 12 }}>Login</Text>
+          <Text style={{ marginLeft: 4, color: iconTint, fontSize: 12 }}>
+            Login
+          </Text>
         </View>
       );
 
@@ -529,7 +537,6 @@ const styles = StyleSheet.create({
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
-  
   },
   iconWrapper: {
     position: "absolute",

@@ -1,4 +1,10 @@
-import { View, StyleSheet, Text, type ViewStyle, type StyleProp } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  type ViewStyle,
+  type StyleProp,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "@/componente/base/button";
 
@@ -9,7 +15,12 @@ interface BotaoProps {
   style?: StyleProp<ViewStyle>;
 }
 
-export default function Botao({ title, onPress, isLoading, style }: BotaoProps) {
+export default function Botao({
+  title,
+  onPress,
+  isLoading,
+  style,
+}: BotaoProps) {
   return (
     <View style={style}>
       <Button
@@ -20,9 +31,7 @@ export default function Botao({ title, onPress, isLoading, style }: BotaoProps) 
       >
         <View style={styles.btn}>
           <Ionicons name="arrow-forward" size={18} color="black" />
-          <Text style={styles.btnText}>
-            {title}
-          </Text>
+          <Text style={styles.btnText}>{title}</Text>
         </View>
       </Button>
     </View>

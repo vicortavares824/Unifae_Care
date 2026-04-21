@@ -12,9 +12,14 @@ interface BarraTopProps {
   icon?: keyof typeof Ionicons.glyphMap;
 }
 
-export default function Form({ title, description, tipo = 'email-address', icon }: BarraTopProps) {
+export default function Form({
+  title,
+  description,
+  tipo = "email-address",
+  icon,
+}: BarraTopProps) {
   const [text, setText] = useState<string>("");
-  const PLACEHOLDERS: string[] = description
+  const PLACEHOLDERS: string[] = description;
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -30,16 +35,16 @@ export default function Form({ title, description, tipo = 'email-address', icon 
               style={{ marginLeft: 15 }}
             />
           )}
-          
+
           <View style={styles.divider} />
 
           <AnimatedInputBar
             placeholders={PLACEHOLDERS}
             value={text}
-            animationInterval={1000} 
+            animationInterval={1000}
             onChangeText={setText}
             selectionColor={"#353535"}
-            keyboardType={tipo} 
+            keyboardType={tipo}
             placeholderStyle={styles.placeholderStyle}
           />
         </View>
@@ -53,22 +58,22 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   wrapper: {
-    width: '90%',
+    width: "90%",
   },
   texto: {
-    color: '#090D20',
+    color: "#090D20",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   inputContainer: {
-    width: '100%',
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 100, // Estética arredondada do antigo
     height: 56,
     borderWidth: 2,
-    borderColor: '#dddfe7ff', // Borda cinza clara do antigo
+    borderColor: "#dddfe7ff", // Borda cinza clara do antigo
   },
   divider: {
     width: 1,
@@ -81,5 +86,5 @@ const styles = StyleSheet.create({
     fontFamily: "SfProRounded",
     fontSize: 16,
     color: "#999",
-  }
+  },
 });

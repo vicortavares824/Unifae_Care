@@ -7,52 +7,51 @@ import Login from "../Screen/Login";
 import { theme } from "@/styles/global";
 
 export default function Formulario() {
-    const [isCadastro, setIsCadastro] = useState(false);
+  const [isCadastro, setIsCadastro] = useState(false);
 
-    return (
-        <GestureHandlerRootView style={styles.container}>
+  return (
+    <GestureHandlerRootView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Seja Bem-vindo</Text>
+        <Text style={styles.title}>A UNIFAE Care</Text>
+        <GooeySwitch
+          active={isCadastro}
+          onToggle={setIsCadastro}
+          activeColor={theme.colors.primary}
+          size={150}
+          trackColor={theme.colors.background}
+          gooey={35}
+          deformation={{
+            squishY: 0.5,
+            stretchX: 1.2,
+          }}
+        />
+      </View>
 
-            <View style={styles.header}>
-                <Text style={styles.title}>Seja Bem-vindo</Text>
-                <Text style={styles.title}>A UNIFAE Care</Text>
-                <GooeySwitch
-                    active={isCadastro}
-                    onToggle={setIsCadastro}
-                    activeColor={theme.colors.primary}
-                    size={150}
-                    trackColor={theme.colors.background}
-                    gooey={35}
-                    deformation={{
-                        squishY: 0.5,
-                        stretchX: 1.2,
-                    }}
-                />
-            </View>
-
-            <View style={styles.content}>
-                {isCadastro ? <Cadastro /> : <Login />}
-            </View>
-        </GestureHandlerRootView>
-    );
+      <View style={styles.content}>
+        {isCadastro ? <Cadastro /> : <Login />}
+      </View>
+    </GestureHandlerRootView>
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: theme.colors.primary,
-    },
-    header: {
-        paddingTop: 60,
-        alignItems: 'center',
-        zIndex: 10,
-    },
-    content: {
-        flex: 1,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: "bold",
-        color: theme.colors.white,
-        textAlign: "center",
-    }
+  container: {
+    flex: 1,
+    backgroundColor: theme.colors.primary,
+  },
+  header: {
+    paddingTop: 60,
+    alignItems: "center",
+    zIndex: 10,
+  },
+  content: {
+    flex: 1,
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: theme.colors.white,
+    textAlign: "center",
+  },
 });

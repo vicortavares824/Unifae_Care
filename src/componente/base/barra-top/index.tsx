@@ -1,9 +1,9 @@
 import { theme } from "@/styles/global";
-import { Text, View ,StyleSheet} from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
-interface BarraTopProps{
-    title: string;
-    description: string;
+interface BarraTopProps {
+  title: string;
+  description: string;
 }
 export default function BarraTop({ title, description }: BarraTopProps) {
   return (
@@ -14,18 +14,18 @@ export default function BarraTop({ title, description }: BarraTopProps) {
   );
 }
 const styles = StyleSheet.create({
-    texto:{
-        color: theme.colors.text,
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    Lateral:{
-        paddingTop: 16,
-        paddingBottom: 16,  
-    },
-    description:{
-        color: theme.colors.textSecondary,
-        fontSize: 16,
-        paddingTop:6
-    }
-})
+  texto: {
+    color: theme.colors.text,
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+  Lateral: {
+    paddingTop: 16,
+    paddingBottom: 16,
+  },
+  description: {
+    color: theme.colors.textSecondary,
+    fontSize: 16,
+    paddingTop: 6,
+  },
+});

@@ -12,9 +12,9 @@ import { theme } from "@/styles/global";
 export default function Cadastro() {
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const handleCadastro = () => {
@@ -25,11 +25,11 @@ export default function Cadastro() {
       email,
       password,
       acceptedTerms,
-      appId: 1
-    }
+      appId: 1,
+    };
 
     console.log("Cadastro payload:", payload);
-    
+
     //TODO
     //Sem rota disponível no Insomnia, implementar depois se necessário.
 
@@ -43,44 +43,73 @@ export default function Cadastro() {
   return (
     <View style={styles.fundo}>
       <View style={styles.container}>
-          <BarraTop title='Faça seu cadastro' description='Seus dados estarão seguros' />
-          <Form title='Nome' description={['Nome','Name','nome']} icon='person-outline' value={name} onChangeText={setName} />
-          <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' value={email} onChangeText={setEmail} />
-          <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' value={password} onChangeText={setPassword} />
-          <Check title='Aceitar os termos' description='Termos de uso' checked={acceptedTerms} onPress={() => setAcceptedTerms(!acceptedTerms)} />
-          <View style={{ paddingBottom: 50 }}>
-            <Botao
-              backgroundColor={theme.colors.primary}
-              width={270}
-              isLoading={isLoading}
-              onPress={handleCadastro}
-              loadingText="Cadastrando..."
-              showLoadingIndicator
-              style={{ alignSelf: 'center' }}>
-              <Text style={{ color: theme.colors.white, fontWeight: 'bold' }}>Cadastrar</Text>
-            </Botao>
-          </View>
+        <BarraTop
+          title="Faça seu cadastro"
+          description="Seus dados estarão seguros"
+        />
+        <Form
+          title="Nome"
+          description={["Nome", "Name", "nome"]}
+          icon="person-outline"
+          value={name}
+          onChangeText={setName}
+        />
+        <Form
+          title="Email"
+          description={["Email", "E-mail", "e-mail"]}
+          icon="mail-outline"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <Form
+          title="Senha"
+          description={["Senha", "Pass", "Password"]}
+          tipo="numeric"
+          icon="lock-closed-outline"
+          value={password}
+          onChangeText={setPassword}
+        />
+        <Check
+          title="Aceitar os termos"
+          description="Termos de uso"
+          checked={acceptedTerms}
+          onPress={() => setAcceptedTerms(!acceptedTerms)}
+        />
+        <View style={{ paddingBottom: 50 }}>
+          <Botao
+            backgroundColor={theme.colors.primary}
+            width={270}
+            isLoading={isLoading}
+            onPress={handleCadastro}
+            loadingText="Cadastrando..."
+            showLoadingIndicator
+            style={{ alignSelf: "center" }}
+          >
+            <Text style={{ color: theme.colors.white, fontWeight: "bold" }}>
+              Cadastrar
+            </Text>
+          </Botao>
         </View>
       </View>
-
+    </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderColor: theme.colors.border,
     borderWidth: 0.7,
     backgroundColor: theme.colors.background,
-    width: '90%',
+    width: "90%",
     height: 530,
   },
   fundo: {
-    width: '100%',
-    height: '100%',
+    width: "100%",
+    height: "100%",
     backgroundColor: theme.colors.primary,
-    alignItems: 'center',
-  }
-})
+    alignItems: "center",
+  },
+});

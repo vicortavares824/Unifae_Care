@@ -1,5 +1,3 @@
-
-
 export const theme = {
   colors: {
     primary: "#28782D",
@@ -14,4 +12,3 @@ export const theme = {
     Background2: "#eeeeeeff",
   },
 };
-
