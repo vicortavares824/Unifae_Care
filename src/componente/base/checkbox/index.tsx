@@ -3,15 +3,19 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useState } from "react";
 import CheckBox from "@/componente/organisms/check-box";
 import { theme } from "@/styles/global";
-
+import { useNavigation } from "@react-navigation/native";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../../router/Router";
 interface CheckProps{
   title: string;
   description: string;
+  Navegacao?: keyof RootStackParamList;
 }
 
-export default function Check({title, description}: CheckProps) {
-  const [checked, setChecked] = useState(false);
 
+export default function Check({title, description,Navegacao}: CheckProps) {
+  const [checked, setChecked] = useState(false);
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
@@ -21,7 +25,7 @@ export default function Check({title, description}: CheckProps) {
             <View style={styles.checkbox}>
               <CheckBox
                 checked={checked}
-                checkmarkColor="#00000065"
+                checkmarkColor="#000000ff"
                 stroke={5}
                 size={30}
               />
@@ -29,7 +33,7 @@ export default function Check({title, description}: CheckProps) {
           </View>
         </Pressable>
 
-        <TouchableOpacity style={styles.forgotPassword}>
+        <TouchableOpacity style={styles.forgotPassword}  onPress={() => {if (Navegacao) {navigation.navigate(Navegacao);} else {alert('Navegação não definida');}}}>
           <Text style={styles.link}>{description}</Text>
         </TouchableOpacity>
       </View>
@@ -43,13 +47,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     width: "100%",
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   },
   card: {
     flexDirection: "row",
     alignItems: "center",
     borderRadius: 100,
-    backgroundColor: "rgba(0, 0, 0, 0.05)",
   },
   checkContent: {
     flexDirection: "row",
@@ -58,13 +61,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: theme.colors.text,
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: "500",
     fontFamily: "HelveticaNowDisplay",
   },
   forgotPassword: {
     marginLeft: 'auto',
-    paddingRight: 28,
   },
   link: {
     color: theme.colors.primary,
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     borderRadius: 12,
-    backgroundColor: "rgba(131, 19, 196, 0.1)",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,

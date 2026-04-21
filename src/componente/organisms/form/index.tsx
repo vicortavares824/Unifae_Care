@@ -50,6 +50,8 @@ export default function Form({ title, description, tipo = 'email-address', icon 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    paddingHorizontal: 30,
   },
   wrapper: {
     width: '90%',

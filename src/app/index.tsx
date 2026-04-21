@@ -4,7 +4,6 @@ import * as SplashScreenNative from 'expo-splash-screen';
 import Router from "../router/Router";
 import SplashScreenCustom from "@/componente/organisms/splash-screen";
 
-// Mantém a splash screen nativa visível até que o app esteja pronto
 SplashScreenNative.preventAutoHideAsync();
 
 export default function App() {
@@ -27,7 +26,6 @@ export default function App() {
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
-      // Esconde a splash screen nativa
       await SplashScreenNative.hideAsync();
     }
   }, [appIsReady]);

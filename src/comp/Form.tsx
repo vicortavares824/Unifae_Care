@@ -1,6 +1,6 @@
-import { Text, View, StyleSheet, KeyboardTypeOptions, Dimensions } from "react-native";
+import { Text, View, StyleSheet, KeyboardTypeOptions } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
+
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import AnimatedInputBar from "@/componente/base/animated-input-bar";

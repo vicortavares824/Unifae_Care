@@ -24,7 +24,6 @@ export default function Cadastro() {
   return (
     <View style={styles.fundo}>
       <View style={styles.container}>
-        <View style={{paddingLeft: 25}}>
           <BarraTop title='Faça seu cadastro' description='Seus dados estarão seguros' />
           <Form title='Nome' description={['Nome','Name','nome']} icon='person-outline' />
           <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' />
@@ -44,18 +43,18 @@ export default function Cadastro() {
           </View>
         </View>
       </View>
-    </View>
+
   );
 }
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderColor: theme.colors.border,
     borderWidth: 0.7,
     backgroundColor: theme.colors.background,
-    alignSelf: 'center',
     width: '90%',
     height: 530,
   },
@@ -63,5 +62,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: theme.colors.primary,
+    alignItems: 'center',
   }
 })

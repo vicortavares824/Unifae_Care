@@ -24,11 +24,10 @@ export default function Login() {
   return (
     <View style={styles.fundo}>
       <View style={styles.container}>
-        <View style={{paddingLeft: 25}}>
-          <BarraTop title='Logar Em Sua Conta' description='faça o login' />
+          <BarraTop title='Logar Em Sua Conta' description='Faça o Login' />
           <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' />
           <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' />
-          <Check title='Lembrar de mim' description='faça o login' />
+          <Check title='Lembrar de mim' description='Recuperar Senha' Navegacao="RepSenha" />
           <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor={theme.colors.primary}
@@ -43,18 +42,17 @@ export default function Login() {
           </View>
         </View>
       </View>
-    </View>
   );
 }
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     borderColor: theme.colors.border,
     borderWidth: 0.7,
     backgroundColor: theme.colors.background,
-    alignSelf: 'center',
     width: '90%',
     height: 530,
   },
@@ -62,5 +60,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: theme.colors.primary,
+    alignItems: 'center',
   }
 })
