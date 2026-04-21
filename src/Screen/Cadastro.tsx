@@ -15,9 +15,20 @@ export default function Cadastro() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   const handleCadastro = () => {
     setIsLoading(true);
+
+    const payload = {
+      name,
+      email,
+      password,
+      acceptedTerms,
+      appId: 1
+    }
+
+    console.log("Cadastro payload:", payload);
     
     //TODO
     //Sem rota disponível no Insomnia, implementar depois se necessário.
@@ -36,7 +47,7 @@ export default function Cadastro() {
           <Form title='Nome' description={['Nome','Name','nome']} icon='person-outline' value={name} onChangeText={setName} />
           <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' value={email} onChangeText={setEmail} />
           <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' value={password} onChangeText={setPassword} />
-          <Check title='Aceitar os termos' description='Termos de uso' />
+          <Check title='Aceitar os termos' description='Termos de uso' checked={acceptedTerms} onPress={() => setAcceptedTerms(!acceptedTerms)} />
           <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor={theme.colors.primary}
