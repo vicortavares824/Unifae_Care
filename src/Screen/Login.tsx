@@ -4,29 +4,59 @@ import Botao from "@/componente/base/button";
 import { StyleSheet, Text, View } from "react-native";
 import BarraTop from "@/componente/base/barra-top";
 import Form from "@/componente/organisms/form";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../router/Router";
 import { theme } from "@/styles/global";
+import { api } from "@/api/api";
+import { AxiosError } from "axios";
 
 export default function Login() {
-  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const handleLogin = () => {
-    setIsLoading(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async () => {
+    setIsLoading(true); 
+
+    const payload = {
+      email,
+      password,
+      accessMode: "APP",
+      appId: 1
+    }
+
+    console.log("Login payload:", payload); // Log do payload para depuração
+
+    try{
+      const result = await api.post('v1/auth/login', payload);
+      
+      if(result.status === 200) {
+        setIsLoading(false);
+        AsyncStorage.setItem('TOKEN', result.data.access_token);
+        AsyncStorage.setItem('CURRENT_USER', JSON.stringify(result.data.user));
+        navigation.navigate("Home");
+      }
+    } catch (e) {
+      const error = e as AxiosError;
+      console.error(`Login error: ${error.message}`,);
+    }
+
+    //Fallback simulando login bem-sucedido devido à falta da API
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
-    navigation.navigate("Home");
-    
+      navigation.navigate("Home");
+    }, 2000);    
   };
 
   return (
     <View style={styles.fundo}>
       <View style={styles.container}>
           <BarraTop title='Logar Em Sua Conta' description='Faça o Login' />
-          <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' />
-          <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' />
+          <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' value={email} onChangeText={setEmail} />
+          <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' value={password} onChangeText={setPassword} />
           <Check title='Lembrar de mim' description='Recuperar Senha' Navegacao="RepSenha" />
           <View style={{ paddingBottom: 50 }}>
             <Botao
