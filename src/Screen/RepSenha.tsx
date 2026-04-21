@@ -9,16 +9,34 @@ import { theme } from "@/styles/global";
 import RepTop from "@/comp/RepTop";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { FadeText } from "../componente/organisms/fade-text";
+import { api } from "@/api/api";
+
 export default function RepSenha() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);  
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const handleLogin = () => {
+  const [email, setEmail] = useState('');
+
+  const handlePasswordRecovery = async () => {
     setIsLoading(true);
+
+    const payload = {
+      email,
+    };
+
+    console.log("Password recovery payload:", payload);
+
+    try{
+      const result = await api.post('v1/auth/recover-forgot-password', payload);
+      console.log("Password recovery result:", result);
+    } catch (e) {
+      const error = e as Error;
+      console.error(`Error: ${error.message}`,);
+    }
+
+    //Fallback devido a falta de API
     setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-   
-    
+      setIsLoading(false);  
+    }, 2000);      
   };
   
   const INPUTS: string[] = [
@@ -34,13 +52,13 @@ export default function RepSenha() {
     <View style={styles.fundo}>
          <RepTop />
       <View style={styles.container }>
-          <Form title='ENDEREÇO DE EMAIL' description={['Email','E-mail','e-mail']} icon='mail-outline' />
+          <Form title='ENDEREÇO DE EMAIL' description={['Email','E-mail','e-mail']} icon='mail-outline' value={email} onChangeText={setEmail} />
           <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor={theme.colors.primary}
               width={270}
               isLoading={isLoading}
-              onPress={handleLogin}
+              onPress={handlePasswordRecovery}
               loadingText="Enviando..."
               showLoadingIndicator
               style={{ alignSelf: 'center' }}>
