@@ -12,29 +12,37 @@ import { theme } from "@/styles/global";
 export default function Cadastro() {
   const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleCadastro = () => {
     setIsLoading(true);
+    
+    //TODO
+    //Sem rota disponível no Insomnia, implementar depois se necessário.
+
+    //Fallback devido a falta de API
     setTimeout(() => {
       setIsLoading(false);
-      navigation.navigate("Login");
-    }, 1500);
+      navigation.navigate("Home");
+    }, 2000);
   };
 
   return (
     <View style={styles.fundo}>
       <View style={styles.container}>
           <BarraTop title='Faça seu cadastro' description='Seus dados estarão seguros' />
-          <Form title='Nome' description={['Nome','Name','nome']} icon='person-outline' />
-          <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' />
-          <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' />
+          <Form title='Nome' description={['Nome','Name','nome']} icon='person-outline' value={name} onChangeText={setName} />
+          <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' value={email} onChangeText={setEmail} />
+          <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' value={password} onChangeText={setPassword} />
           <Check title='Aceitar os termos' description='Termos de uso' />
           <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor={theme.colors.primary}
               width={270}
               isLoading={isLoading}
-              onPress={handleLogin}
+              onPress={handleCadastro}
               loadingText="Cadastrando..."
               showLoadingIndicator
               style={{ alignSelf: 'center' }}>
