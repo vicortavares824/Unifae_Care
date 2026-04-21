@@ -2,6 +2,7 @@ import { View, Text, Pressable, StyleSheet,TouchableOpacity } from "react-native
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useState } from "react";
 import CheckBox from "@/componente/organisms/check-box";
+import { theme } from "@/styles/global";
 
 interface CheckProps{
   title: string;
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   title: {
-    color: "#090D20",
+    color: theme.colors.text,
     fontSize: 12,
     fontWeight: "500",
     fontFamily: "HelveticaNowDisplay",
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
     paddingRight: 28,
   },
   link: {
-    color: "#8369f5",
+    color: theme.colors.primary,
     fontSize: 12,
     fontWeight: "600",
     fontFamily: "HelveticaNowDisplay",
@@ -79,6 +80,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderWidth: 1,
-    borderColor: "#c7c6c6ff",
+    borderColor: theme.colors.border,
   },
 });

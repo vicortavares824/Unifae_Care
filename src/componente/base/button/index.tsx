@@ -19,6 +19,7 @@ import Animated, {
 import { LinearGradient } from "expo-linear-gradient";
 // @ts-check
 import type { IButton } from "./types";
+import { theme } from "@/styles/global";
 
 export const Button = memo<IButton>(
     ({
@@ -27,9 +28,9 @@ export const Button = memo<IButton>(
       onPress,
       width = 200,
       height = 48,
-      backgroundColor = "#fff",
+      backgroundColor = theme.colors.background,
       loadingText = "Loading...",
-      loadingTextColor = "white",
+      loadingTextColor = theme.colors.white,
       loadingTextSize = 16,
       borderRadius,
       gradientColors,
@@ -40,7 +41,7 @@ export const Button = memo<IButton>(
       disabled = false,
       showLoadingIndicator = false,
       renderLoadingIndicator,
-      loadingTextBackgroundColor = "#8369f5",
+      loadingTextBackgroundColor = theme.colors.primary,
     }: IButton): React.ReactNode & React.JSX.Element & React.ReactElement => {
       const animationProgress = useSharedValue<number>(isLoading ? 1 : 0);
       const scaleValue = useSharedValue<number>(1);
@@ -128,7 +129,7 @@ export const Button = memo<IButton>(
                 renderLoadingIndicator()
               ) : (
                 <Animated.View style={{ marginRight: loadingText ? 8 : 0 }}>
-                  <ActivityIndicator color={"#ffffffff"} size={"small"} />
+                  <ActivityIndicator color={theme.colors.white} size={"small"} />
                 </Animated.View>
               ))}
             <Animated.Text

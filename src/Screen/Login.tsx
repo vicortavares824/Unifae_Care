@@ -7,6 +7,7 @@ import Form from "@/componente/organisms/form";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../router/Router";
+import { theme } from "@/styles/global";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
@@ -30,14 +31,14 @@ export default function Login() {
           <Check title='Lembrar de mim' description='faça o login' />
           <View style={{ paddingBottom: 50 }}>
             <Botao
-              backgroundColor="#8369f5"
+              backgroundColor={theme.colors.primary}
               width={270}
               isLoading={isLoading}
               onPress={handleLogin}
               loadingText="Entrando..."
               showLoadingIndicator
               style={{ alignSelf: 'center' }}>
-              <Text style={{ color: 'white', fontWeight: 'bold' }}>Entrar</Text>
+              <Text style={{ color: theme.colors.white, fontWeight: 'bold' }}>Entrar</Text>
             </Botao>
           </View>
         </View>
@@ -50,9 +51,9 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    borderColor: '#696969ff',
+    borderColor: theme.colors.border,
     borderWidth: 0.7,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: theme.colors.background,
     alignSelf: 'center',
     width: '90%',
     height: 530,
@@ -60,6 +61,6 @@ const styles = StyleSheet.create({
   fundo: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#8369f5',
+    backgroundColor: theme.colors.primary,
   }
 })

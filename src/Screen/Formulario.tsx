@@ -4,6 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Cadastro from "../Screen/Cadastro";
 import Login from "../Screen/Login";
+import { theme } from "@/styles/global";
 
 export default function Formulario() {
     const [isCadastro, setIsCadastro] = useState(false);
@@ -17,9 +18,9 @@ export default function Formulario() {
                 <GooeySwitch
                     active={isCadastro}
                     onToggle={setIsCadastro}
-                    activeColor="#8369f5"
+                    activeColor={theme.colors.primary}
                     size={150}
-                    trackColor="#1a1a1a"
+                    trackColor={theme.colors.background}
                     gooey={35}
                     deformation={{
                         squishY: 0.5,
@@ -38,7 +39,7 @@ export default function Formulario() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#8369f5',
+        backgroundColor: theme.colors.primary,
     },
     header: {
         paddingTop: 60,
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 24,
         fontWeight: "bold",
-        color: "#fff",
+        color: theme.colors.white,
         textAlign: "center",
     }
 });
