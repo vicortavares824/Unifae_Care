@@ -17,6 +17,7 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = async () => {
     setIsLoading(true); 
@@ -57,7 +58,7 @@ export default function Login() {
           <BarraTop title='Logar Em Sua Conta' description='Faça o Login' />
           <Form title='Email' description={['Email','E-mail','e-mail']} icon='mail-outline' value={email} onChangeText={setEmail} />
           <Form title='Senha' description={['Senha','Pass','Password']} tipo="numeric" icon='lock-closed-outline' value={password} onChangeText={setPassword} />
-          <Check title='Lembrar de mim' description='Recuperar Senha' Navegacao="RepSenha" />
+          <Check title='Lembrar de mim' description='Recuperar Senha' Navegacao="RepSenha" checked={rememberMe} onPress={() => setRememberMe(!rememberMe)} />
           <View style={{ paddingBottom: 50 }}>
             <Botao
               backgroundColor={theme.colors.primary}
