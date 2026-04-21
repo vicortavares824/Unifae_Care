@@ -1,6 +1,5 @@
 import { View, Text, Pressable, StyleSheet,TouchableOpacity } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { useState } from "react";
 import CheckBox from "@/componente/organisms/check-box";
 import { theme } from "@/styles/global";
 import { useNavigation } from "@react-navigation/native";
@@ -10,16 +9,17 @@ interface CheckProps{
   title: string;
   description: string;
   Navegacao?: keyof RootStackParamList;
+  checked: boolean;
+  onPress: () => void;
 }
 
 
-export default function Check({title, description,Navegacao}: CheckProps) {
-  const [checked, setChecked] = useState(false);
+export default function Check({title, description, Navegacao, checked, onPress}: CheckProps) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <GestureHandlerRootView>
       <View style={styles.container}>
-        <Pressable onPress={() => setChecked(!checked)} style={styles.card}>
+        <Pressable onPress={onPress} style={styles.card}>
           <View style={styles.checkContent}>
             <Text style={styles.title}>{title}</Text>
             <View style={styles.checkbox}>
