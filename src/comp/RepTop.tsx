@@ -4,19 +4,15 @@ import { FadeText } from "../componente/organisms/fade-text";
 import CompVoltar from "./CompVoltar";
 
 export default function RepTop(): React.JSX.Element {
-
   const INPUTS: string[] = [
     "Insira seu e-mail",
     "Para receber um codigo de 8",
     "Digitos para redefinir sua conta",
   ];
-  const INPUTS2: string[] = [
-    "Recuperar senha",
-  ];
+  const INPUTS2: string[] = ["Recuperar senha"];
 
   return (
     <GestureHandlerRootView style={styles.container}>
-
       <View
         style={{
           justifyContent: "center",
@@ -25,7 +21,10 @@ export default function RepTop(): React.JSX.Element {
         }}
       >
         <CompVoltar tile="UNIFAE Care" />
-        <Image source={require("../../assets/images/Fae_Logo.jpg")} style={styles.logo}/>
+        <Image
+          source={require("../../assets/images/Fae_Logo.jpg")}
+          style={styles.logo}
+        />
         <FadeText
           inputs={INPUTS2}
           duration={3500}
@@ -58,11 +57,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  logo:{
+  logo: {
     width: 100,
     height: 100,
     borderRadius: 60,
     marginBottom: 20,
   },
-
 });

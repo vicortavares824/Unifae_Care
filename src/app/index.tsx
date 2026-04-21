@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { View } from "react-native";
-import * as SplashScreenNative from 'expo-splash-screen';
+import * as SplashScreenNative from "expo-splash-screen";
 import Router from "../router/Router";
 import SplashScreenCustom from "@/componente/organisms/splash-screen";
 
@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       } catch (e) {
         console.warn(e);
       } finally {
@@ -41,9 +41,9 @@ export default function App() {
   return (
     <View style={{ flex: 1 }} onLayout={onLayoutRootView}>
       <Router />
-      {showSplash && <SplashScreenCustom onAnimationFinish={handleAnimationFinish} />}
+      {showSplash && (
+        <SplashScreenCustom onAnimationFinish={handleAnimationFinish} />
+      )}
     </View>
   );
 }
-
-

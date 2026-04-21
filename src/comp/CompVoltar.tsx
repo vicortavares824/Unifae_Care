@@ -8,23 +8,26 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 interface CompVoltarProps {
   tile?: string;
 }
-export default function CompVoltar({tile}: CompVoltarProps) {
+export default function CompVoltar({ tile }: CompVoltarProps) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
     <GestureHandlerRootView style={styles.container}>
-
-      <RadiantButton style={styles.button} textStyle={styles.radiantButtonText} onPress={navigation.goBack}  >
+      <RadiantButton
+        style={styles.button}
+        textStyle={styles.radiantButtonText}
+        onPress={navigation.goBack}
+      >
         <View style={styles.row}>
-        <Ionicons name="arrow-back-circle-outline" size={24} color="white" />
+          <Ionicons name="arrow-back-circle-outline" size={24} color="white" />
           <Text
             style={[
               styles.text,
               {
-                fontFamily:  "HelveticaNowDisplay"
+                fontFamily: "HelveticaNowDisplay",
               },
             ]}
           >
-           {tile ? tile : "Voltar"}
+            {tile ? tile : "Voltar"}
           </Text>
         </View>
       </RadiantButton>
@@ -42,11 +45,10 @@ const styles = StyleSheet.create({
 
   button: {
     width: 120,
-
   },
-    radiantButtonText: {
-        fontSize: 0,
-    },
+  radiantButtonText: {
+    fontSize: 0,
+  },
 
   row: {
     flexDirection: "row",

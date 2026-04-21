@@ -30,7 +30,9 @@ export default function HomeTabs() {
       >
         <Tab.Screen
           name="home"
-          component={() => (<ScreenPlaceholder name="Início" color={theme.colors.white} />)}
+          component={() => (
+            <ScreenPlaceholder name="Início" color={theme.colors.white} />
+          )}
           options={{
             title: "Home",
             tabBarIcon: ({ focused }) => (
@@ -44,7 +46,9 @@ export default function HomeTabs() {
         />
         <Tab.Screen
           name="tasks"
-          component={() => (<ScreenPlaceholder name="Tarefas" color={theme.colors.white} />)}
+          component={() => (
+            <ScreenPlaceholder name="Tarefas" color={theme.colors.white} />
+          )}
           options={{
             title: "Tarefas",
             tabBarIcon: ({ focused }) => (
@@ -58,7 +62,9 @@ export default function HomeTabs() {
         />
         <Tab.Screen
           name="subjects"
-          component={() => (<ScreenPlaceholder name="Materias" color={theme.colors.white} />)}
+          component={() => (
+            <ScreenPlaceholder name="Materias" color={theme.colors.white} />
+          )}
           options={{
             title: "Materiais",
             tabBarIcon: ({ focused }) => (
@@ -72,7 +78,9 @@ export default function HomeTabs() {
         />
         <Tab.Screen
           name="notes"
-          component={() => (<ScreenPlaceholder name="Anotações" color={theme.colors.white} />)}
+          component={() => (
+            <ScreenPlaceholder name="Anotações" color={theme.colors.white} />
+          )}
           options={{
             title: "Anotações",
             tabBarIcon: ({ focused }) => (
@@ -86,7 +94,9 @@ export default function HomeTabs() {
         />
         <Tab.Screen
           name="profile"
-          component={() => (<ScreenPlaceholder name="Perfil" color={theme.colors.white} />)}
+          component={() => (
+            <ScreenPlaceholder name="Perfil" color={theme.colors.white} />
+          )}
           options={{
             title: "Perfil",
             tabBarIcon: ({ focused }) => (

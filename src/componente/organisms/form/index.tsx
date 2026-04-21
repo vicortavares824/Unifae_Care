@@ -5,15 +5,22 @@ import AnimatedInputBar from "@/componente/base/animated-input-bar";
 
 interface BarraTopProps {
   title: string;
-  description: string[];  
+  description: string[];
   tipo?: KeyboardTypeOptions;
   icon?: keyof typeof Ionicons.glyphMap;
   value: string;
   onChangeText: (text: string) => void;
 }
 
-export default function Form({ title, description, tipo = 'email-address', icon, value, onChangeText }: BarraTopProps) {
-  const PLACEHOLDERS: string[] = description
+export default function Form({
+  title,
+  description,
+  tipo = "email-address",
+  icon,
+  value,
+  onChangeText,
+}: BarraTopProps) {
+  const PLACEHOLDERS: string[] = description;
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -29,7 +36,7 @@ export default function Form({ title, description, tipo = 'email-address', icon,
               style={{ marginLeft: 15 }}
             />
           )}
-          
+
           <View style={styles.divider} />
 
           <AnimatedInputBar
@@ -50,26 +57,26 @@ export default function Form({ title, description, tipo = 'email-address', icon,
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 30,
   },
   wrapper: {
-    width: '90%',
+    width: "90%",
   },
   texto: {
-    color: '#090D20',
+    color: "#090D20",
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   inputContainer: {
-    width: '100%',
+    width: "100%",
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#fff",
     borderRadius: 100,
     height: 56,
     borderWidth: 2,
-    borderColor: '#dddfe7ff',
+    borderColor: "#dddfe7ff",
   },
   divider: {
     width: 1,
@@ -82,5 +89,5 @@ const styles = StyleSheet.create({
     fontFamily: "SfProRounded",
     fontSize: 16,
     color: "#999",
-  }
+  },
 });
