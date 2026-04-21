@@ -1,18 +1,18 @@
 import { Text, View, StyleSheet, KeyboardTypeOptions } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
 import AnimatedInputBar from "@/componente/base/animated-input-bar";
 
 interface BarraTopProps {
   title: string;
-  description: string[];
+  description: string[];  
   tipo?: KeyboardTypeOptions;
   icon?: keyof typeof Ionicons.glyphMap;
+  value: string;
+  onChangeText: (text: string) => void;
 }
 
-export default function Form({ title, description, tipo = 'email-address', icon }: BarraTopProps) {
-  const [text, setText] = useState<string>("");
+export default function Form({ title, description, tipo = 'email-address', icon, value, onChangeText }: BarraTopProps) {
   const PLACEHOLDERS: string[] = description
 
   return (
@@ -34,9 +34,9 @@ export default function Form({ title, description, tipo = 'email-address', icon 
 
           <AnimatedInputBar
             placeholders={PLACEHOLDERS}
-            value={text}
+            value={value}
             animationInterval={900}
-            onChangeText={setText}
+            onChangeText={onChangeText}
             selectionColor={"#353535"}
             keyboardType={tipo}
             placeholderStyle={styles.placeholderStyle}
