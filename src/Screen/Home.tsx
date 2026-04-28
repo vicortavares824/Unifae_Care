@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CurvedBottomTabs } from "@/componente/base/curved-bottom-tabs";
 import { theme } from "@/styles/global";
-
+import Perfil from "./Perfil";
 const Tab = createBottomTabNavigator();
 
 function ScreenPlaceholder({ name, color }: { name: string; color: string }) {
@@ -23,18 +23,17 @@ export default function HomeTabs() {
         tabBar={(props) => <CurvedBottomTabs {...props} />}
         screenOptions={{
           headerShown: true,
-          headerTitle: "Fisioterapia Unifae",
-          headerStyle: { backgroundColor: theme.colors.primary },
-          headerTintColor: theme.colors.white,
+          headerTransparent: true,
+          headerTitle: "",
         }}
       >
         <Tab.Screen
-          name="home"
+          name="Início"
           component={() => (
             <ScreenPlaceholder name="Início" color={theme.colors.white} />
           )}
           options={{
-            title: "Home",
+            title: "Início",
             tabBarIcon: ({ focused }) => (
               <Ionicons
                 name={focused ? "home" : "home-outline"}
@@ -45,15 +44,15 @@ export default function HomeTabs() {
           }}
         />
         <Tab.Screen
-          name="tasks"
+          name="Agenda"
           component={() => (
-            <ScreenPlaceholder name="Tarefas" color={theme.colors.white} />
+            <ScreenPlaceholder name="Agenda" color={theme.colors.white} />
           )}
           options={{
-            title: "Tarefas",
+            title: "Agenda",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? "checkbox" : "checkbox-outline"}
+                name={focused ? "calendar" : "calendar-outline"}
                 size={20}
                 color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
@@ -61,31 +60,15 @@ export default function HomeTabs() {
           }}
         />
         <Tab.Screen
-          name="subjects"
+          name="Progressos"
           component={() => (
-            <ScreenPlaceholder name="Materias" color={theme.colors.white} />
+            <ScreenPlaceholder name="Progressos" color={theme.colors.white} />
           )}
           options={{
-            title: "Materiais",
+            title: "Progressos",
             tabBarIcon: ({ focused }) => (
               <Ionicons
-                name={focused ? "school" : "school-outline"}
-                size={20}
-                color={focused ? theme.colors.focused : theme.colors.unfocused}
-              />
-            ),
-          }}
-        />
-        <Tab.Screen
-          name="notes"
-          component={() => (
-            <ScreenPlaceholder name="Anotações" color={theme.colors.white} />
-          )}
-          options={{
-            title: "Anotações",
-            tabBarIcon: ({ focused }) => (
-              <Ionicons
-                name={focused ? "book" : "book-outline"}
+                name={focused ? "analytics" : "analytics-outline"}
                 size={20}
                 color={focused ? theme.colors.focused : theme.colors.unfocused}
               />
@@ -94,9 +77,7 @@ export default function HomeTabs() {
         />
         <Tab.Screen
           name="profile"
-          component={() => (
-            <ScreenPlaceholder name="Perfil" color={theme.colors.white} />
-          )}
+          component={Perfil}
           options={{
             title: "Perfil",
             tabBarIcon: ({ focused }) => (
