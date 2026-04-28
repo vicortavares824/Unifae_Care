@@ -10,5 +10,7 @@ export const theme = {
     focused: "#FFFFFF",
     unfocused: "#B9B9B9",
     Background2: "#eeeeeeff",
+    textPerfil: "#ffffffff",
+    borderPerfil: "#0cce19ff",
   },
 };
