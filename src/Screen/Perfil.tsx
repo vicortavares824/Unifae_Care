@@ -1,12 +1,14 @@
 import React from "react";
-import { View, Text ,TouchableOpacity} from "react-native";
+import { View, Text ,TouchableOpacity,ScrollView} from "react-native";
 import { Avatar } from "@/componente/base/avatar";
 import { theme } from "@/styles/global";
 import { Ionicons } from "@expo/vector-icons";
 import Doutoures from "@/comp/Doutoures";
+import Porcentagem from "@/comp/Porcemtagem";
+import BottomPerfil from "@/comp/bottomPerfil";
 export default function Perfil() {
   return (
-    <View>
+    <ScrollView showsVerticalScrollIndicator={false}>
         <View style={{justifyContent: "center", flexDirection: "row", alignItems: "center", marginTop: 50}}>
             <Text style={{ fontSize: 20, fontWeight: "bold" ,paddingRight: 120}}>UNIFAE Care</Text>
             <Avatar
@@ -45,7 +47,13 @@ export default function Perfil() {
             <Text style={{ fontSize: 15, fontWeight: "bold", marginTop: 10,color: "#0cce19ff" }}>ID : 123456</Text>
         </View>
         <Doutoures Categoria="FISIOTERAPEUTA" nome="Nome do Doutor" Nivel="Nível 1" image="https://images.pexels.com/photos/2422259/pexels-photo-2422259.jpeg?auto=compress&cs=tinysrgb&w=1200" />
-    
-    </View>
+        <Porcentagem Nivel={60}/>
+        <BottomPerfil icon='notifications' title='Lembrete'/>
+        <BottomPerfil  icon='notifications-outline' title='Notificações'/>
+        <BottomPerfil  icon='shield-half-outline' title='Privacidade e Dados'/>
+        <TouchableOpacity style={{backgroundColor:"#ba1a1a6b",padding: 4, borderRadius: 20, marginHorizontal: 40, marginTop: 20, marginBottom: 120, flexDirection: "row",justifyContent: "center", alignItems: "center"}}>        
+                 <Text style={{fontSize:15,fontWeight:'bold',marginVertical:10,color:"#ba1a1a"}}>Sair</Text>
+        </TouchableOpacity>
+    </ScrollView>
   );
 }

@@ -8,8 +8,7 @@ interface DoutouresProps {
 }
 export default function Doutoures({ Categoria, nome, Nivel, image }: DoutouresProps) {
   return(
-    <View>
-        <View style={{justifyContent: "center", margin: 20, padding: 20, backgroundColor: "#eeeeeeff", borderRadius: 10}}>
+       <View style={{justifyContent: "center", margin: 20, padding: 20, backgroundColor: "#eeeeeeff", borderRadius: 10}}>
         <Text style={{ fontSize: 14, fontWeight: "bold" ,paddingHorizontal: 40,marginVertical: 10,color: "#757171ff"}}>{Categoria} Responsavel</Text>
        
         
@@ -21,6 +20,5 @@ export default function Doutoures({ Categoria, nome, Nivel, image }: DoutouresPr
         </View>
        </View>
         </View>
-    </View>
   );
 }
