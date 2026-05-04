@@ -38,7 +38,7 @@ export default function Login() {
         setIsLoading(false);
         AsyncStorage.setItem("TOKEN", result.data.access_token);
         AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
-        navigation.navigate("Home");
+        navigation.navigate("Tabs");
       }
     } catch (e) {
       const error = e as AxiosError;
@@ -48,7 +48,7 @@ export default function Login() {
     //Fallback simulando login bem-sucedido devido à falta da API
     setTimeout(() => {
       setIsLoading(false);
-      navigation.navigate("Home");
+      navigation.navigate("Tabs");
     }, 2000);
   };
 

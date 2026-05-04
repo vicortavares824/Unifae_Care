@@ -1,5 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import Home from "../Screen/Home";
+import Tabs from "../Screen/Tab";
 import Login from "../Screen/Login";
 import Cadastro from "../Screen/Cadastro";
 import Formulario from "../Screen/Formulario";
@@ -8,7 +8,7 @@ export type RootStackParamList = {
   Formulario: undefined;
   Login: undefined;
   Cadastro: undefined;
-  Home: undefined;
+  Tabs: undefined;
   RepSenha: undefined;
 };
 
@@ -23,7 +23,7 @@ export default function Router() {
       <stack.Screen name="Formulario" component={Formulario} />
       <stack.Screen name="Login" component={Login} />
       <stack.Screen name="Cadastro" component={Cadastro} />
-      <stack.Screen name="Home" component={Home} />
+      <stack.Screen name="Tabs" component={Tabs} />
       <stack.Screen name="RepSenha" component={RepSenha} />
     </stack.Navigator>
   );
