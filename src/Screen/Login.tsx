@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Check from "@/componente/base/checkbox";
-import Botao from "@/componente/base/button";
-import { StyleSheet, Text, View } from "react-native";
+import { api } from "@/api/api";
 import BarraTop from "@/componente/base/barra-top";
+import Botao from "@/componente/base/button";
+import Check from "@/componente/base/checkbox";
 import Form from "@/componente/organisms/form";
+import { theme } from "@/styles/global";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../router/Router";
-import { theme } from "@/styles/global";
-import { api } from "@/api/api";
 import { AxiosError } from "axios";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { RootStackParamList } from "../router/Router";
 
 export default function Login() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
@@ -34,11 +34,11 @@ export default function Login() {
     try {
       const result = await api.post("v1/auth/login", payload);
 
-      if (result.status === 200) {
+      if (result.status === 201) {
         setIsLoading(false);
         AsyncStorage.setItem("TOKEN", result.data.access_token);
         AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
-        navigation.navigate("Tabs");
+        navigation.navigate("Home");
       }
     } catch (e) {
       const error = e as AxiosError;
@@ -48,7 +48,7 @@ export default function Login() {
     //Fallback simulando login bem-sucedido devido à falta da API
     setTimeout(() => {
       setIsLoading(false);
-      navigation.navigate("Tabs");
+      navigation.navigate("Home");
     }, 2000);
   };
 
@@ -66,10 +66,11 @@ export default function Login() {
         <Form
           title="Senha"
           description={["Senha", "Pass", "Password"]}
-          tipo="numeric"
+          tipo="visible-password"
           icon="lock-closed-outline"
           value={password}
           onChangeText={setPassword}
+          secureTextEntry={true}
         />
         <Check
           title="Lembrar de mim"

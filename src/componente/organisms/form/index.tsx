@@ -1,7 +1,7 @@
-import { Text, View, StyleSheet, KeyboardTypeOptions } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
 import AnimatedInputBar from "@/componente/base/animated-input-bar";
+import { Ionicons } from "@expo/vector-icons";
+import { KeyboardTypeOptions, StyleSheet, Text, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 interface BarraTopProps {
   title: string;
@@ -10,6 +10,7 @@ interface BarraTopProps {
   icon?: keyof typeof Ionicons.glyphMap;
   value: string;
   onChangeText: (text: string) => void;
+  secureTextEntry?: boolean;
 }
 
 export default function Form({
@@ -19,6 +20,7 @@ export default function Form({
   icon,
   value,
   onChangeText,
+  secureTextEntry,
 }: BarraTopProps) {
   const PLACEHOLDERS: string[] = description;
 
@@ -47,6 +49,7 @@ export default function Form({
             selectionColor={"#353535"}
             keyboardType={tipo}
             placeholderStyle={styles.placeholderStyle}
+            secureTextEntry={secureTextEntry}
           />
         </View>
       </View>
