@@ -29,8 +29,6 @@ export default function Login() {
       appId: 1,
     };
 
-    console.log("Login payload:", payload); 
-
     try {
       const result = await api.post("v1/auth/login", payload);
 
@@ -38,7 +36,14 @@ export default function Login() {
         setIsLoading(false);
         AsyncStorage.setItem("TOKEN", result.data.access_token);
         AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
-        navigation.navigate("home");
+
+        if (result.data.consentRequired) {
+          navigation.navigate("home");
+          return;
+        } else {
+          navigation.navigate("Termos");
+          return;
+        }
       }
     } catch (e) {
       const error = e as AxiosError;

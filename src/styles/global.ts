@@ -7,6 +7,7 @@ export const theme = {
     border: "#696969ff",
     white: "#ffffff",
     black: "#000000",
+    red: "#ba1a1a",
     focused: "#FFFFFF",
     unfocused: "#B9B9B9",
     Background2: "#eeeeeeff",

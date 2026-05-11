@@ -1,55 +1,57 @@
-import { View, Text, StyleSheet } from "react-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { api } from "@/api/api";
+import { CircularProgress } from "@/componente/organisms/circular-progress";
+import { RootStackParamList } from "@/router/Router";
+import { theme } from "@/styles/global";
+import { Ionicons } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { AxiosError } from "axios";
+import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { SymbolView } from "expo-symbols";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { useSharedValue } from "react-native-reanimated";
 import AnimatedScrollProgress from "../componente/micro-interactions/animated-scroll-progress";
-import { CircularProgress } from "@/componente/organisms/circular-progress";
-import { TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-const STORY = {
+
+const TERMS = {
   title: "Termos de Uso",
-  author: "rogerio skylab",
-  date: "August 03, 2023",
-  content: `It was almost impossible to make out the lone figure, shuffling slowly across the expanse of sand, far below. Only his movement gave him away. Wrapped in pale shreds of clothing, caked in tan grit and burnt red by the oppressive sun, he was all but a part of the desert already.
+  content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et arcu eros. Etiam luctus, est eget cursus pretium, est sem faucibus leo, eget varius leo velit eget eros. Curabitur facilisis tortor justo, congue dignissim diam auctor ut. Duis commodo tellus sed ipsum malesuada finibus. Quisque eleifend viverra lacinia. Nulla aliquam finibus diam eu gravida. Ut suscipit turpis eu dolor viverra luctus. Cras venenatis velit vel nulla hendrerit lobortis. Sed vitae placerat tortor, id commodo sapien. Suspendisse condimentum vestibulum nisi, nec hendrerit nisl mattis id. Integer sit amet est ut enim rutrum dictum. Curabitur porttitor malesuada lorem, id pellentesque nibh faucibus ut. Aliquam vitae nisl ultricies, varius libero id, luctus metus. Phasellus in metus elit. Vivamus vitae nisi leo.
 
-Anubis, crouched in the shade of a rocky outcrop, panted his jackal tongue in an effort to cool himself. The heat of the clear day was extreme, the weight of its pressure, unrelenting. He pressed as much of his bare skin against the rocks as possible, his fingers spread wide against the sand-smoothed surface, all in an attempt to absorb their stored shade.
+Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed non erat tortor. Nulla placerat varius nulla, blandit vestibulum orci ultrices sed. Nam imperdiet pulvinar diam, non imperdiet nisl bibendum non. Aenean sed mollis libero, non auctor quam. Mauris id iaculis est. Etiam et massa euismod, fringilla metus in, placerat urna. Proin non augue vestibulum, porta arcu consectetur, pharetra felis.
 
-Unlike his prey, he had come prepared, and lapped greedily at the water from one of the many skins hung from his belt. It was not a day he would have chosen to enter the shifting sands. He sighed and shook his head.
+Sed luctus pulvinar leo eget finibus. Nulla suscipit mi mauris, tempus volutpat est sagittis eget. Interdum et malesuada fames ac ante ipsum primis in faucibus. Phasellus vitae nisl at magna tristique mollis. Aliquam semper mi eu lacus lobortis maximus. Donec at nisl at justo faucibus ultrices ac sit amet nisl. Donec non metus vulputate, pellentesque lacus in, posuere purus. Pellentesque congue et ante sit amet ullamcorper.
 
-The man's persistent stumbling had taken him out of view over the next rise. Reluctantly, Anubis stood. He took up his long, curved spear, and set out into the sun to continue the pursuit.
-
-His endless trailing of the single soul was growing tiresome. As soon as he left the shelter of the rocks and felt the sting of the suns rays upon his bare skin yet again, he made a snap decision. It was time to speed things up.
-
-Anubis strode on long legs across the dunes, consuming the distance between him and his prey quickly. The god towered over any human, and found his height most useful.
-
-By noon, Anubis had caught up to the man. The weakling had fallen again. He approached in a way that cast his shadow long over the back of the poor soul, who trembled there on his hands and knees.
-
-"But I'm not done yet…" He whispered.
-
-"I would not be here, if that were true," Anubis said, extending an open hand.
-
-To his dismay, the dying man turned and swatted his long, clawed fingers away and pushed himself to his feet.
-
-"No." He croaked, and began walking again in earnest.
-
-Anubis held still for a moment. His nose twitching, his lip curling in outrage. He could understand the reluctance of some humans - the young, the unexpectedly injured or the rapidly sick. But this? It was clear cut. Why fight it?
-
-"Look around!" He snarled, "What chance do you have?"
-
-"A better one than if I go with you!" The man said, not wasting the energy to turn his head.
-
-"Give it up, human! Your time is done. Come with me to Osiris, be weighed and end this misery!"
-
-"I told you." The fool coughed over split and scabbed lips, "I'm not done yet."
-
-He ducked past the jackal-headed God, and kept walking into the endless dunes. He held his head high, somehow stronger for his defiance.`,
+Duis bibendum consequat lectus, et convallis sapien malesuada sed. Pellentesque eu hendrerit diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nulla pulvinar magna nec tellus aliquam dignissim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum et finibus sapien. Fusce eget ullamcorper felis. Curabitur scelerisque velit ut elit maximus, non porttitor orci posuere. Nulla facilisi. Mauris porttitor eget magna at rutrum.
+`,
 };
 
 export default function Termos() {
-  
-
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const progress = useSharedValue<number>(0);
+
+  const handleAccept = async () => {
+    const payload = {
+      consentTermId: 2,
+    };
+
+    try {
+      const result = await api.post("v1/auth/consent/accept", payload);
+
+      if (result.status === 201) {
+        console.log("Consent accepted successfully", result.data);
+        navigation.navigate("home");
+      }
+    } catch (e) {
+      const error = e as AxiosError;
+      console.error(`Accept error: ${error.message}`);
+    }
+
+    return;
+  };
+
+  const handleDecline = () => {
+    navigation.navigate("Formulario");
+    return;
+  };
 
   return (
     <GestureHandlerRootView style={styles.container}>
@@ -59,8 +61,8 @@ export default function Termos() {
         fabWidth={280}
         fabHeight={56}
         fabBottomOffset={50}
-        fabBackgroundColor="#151515"
-        fabEndBackgroundColor="#151515"
+        fabBackgroundColor={theme.colors.primary}
+        fabEndBackgroundColor={theme.colors.primary}
         fabBorderRadius={28}
         showFabOnScroll
         fabAppearScrollOffset={50}
@@ -70,13 +72,7 @@ export default function Termos() {
         renderInitialContent={() => (
           <View style={styles.fabContent}>
             <View style={styles.fabTextContent}>
-              <Text
-                style={[
-                  styles.fabTitle
-                ]}
-              >
-                {STORY.title}
-              </Text>
+              <Text style={[styles.fabTitle]}>{TERMS.title}</Text>
             </View>
             <View
               style={{
@@ -88,17 +84,20 @@ export default function Termos() {
                 progress={progress}
                 size={36}
                 renderIcon={() => (
-                   <Ionicons name="checkmark-done" size={15} color="#fbfffbff"/>
+                  <Ionicons
+                    name="checkmark-done"
+                    size={15}
+                    color={theme.colors.background}
+                  />
                 )}
                 strokeWidth={3}
-                backgroundColor="#333"
+                backgroundColor={theme.colors.text}
               />
             </View>
           </View>
         )}
         renderEndContent={() => (
-           <View
-
+          <View
             style={{
               flex: 1,
               width: 240,
@@ -108,94 +107,58 @@ export default function Termos() {
               justifyContent: "space-between",
               paddingHorizontal: 16,
             }}
-
           >
-
             <TouchableOpacity
-
-              onPress={() => console.log("Voltar pressionado")}
+              onPress={handleDecline}
               style={{
-                backgroundColor: '#ffdbdb',
+                backgroundColor: "#ffdbdb",
                 height: 36,
                 paddingHorizontal: 20,
                 borderRadius: 18,
-                justifyContent: 'center',
-                alignItems: 'center',    
+                justifyContent: "center",
+                alignItems: "center",
               }}
-
-            >        
-
-              <Text style={{ fontSize: 14, fontWeight: 'bold', color: "#ba1a1a" }}>
+            >
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: "bold",
+                  color: theme.colors.red,
+                }}
+              >
                 Voltar
               </Text>
-
             </TouchableOpacity>
-             <TouchableOpacity
-              onPress={() => console.log("Aceitar pressionado")}
+            <TouchableOpacity
+              onPress={handleAccept}
               style={{
-                backgroundColor: '#e1ffdb',
+                backgroundColor: "#e1ffdb",
                 height: 36,
                 paddingHorizontal: 20,
                 borderRadius: 18,
-                justifyContent: 'center',
-                alignItems: 'center',    
+                justifyContent: "center",
+                alignItems: "center",
               }}
-
-            >        
-              <Text style={{ fontSize: 14, fontWeight: 'bold', color: "#1fba1a" }}>
+            >
+              <Text
+                style={{
+                  fontSize: 14,
+                  fontWeight: "bold",
+                  color: theme.colors.primary,
+                }}
+              >
                 Aceitar
               </Text>
             </TouchableOpacity>
-
           </View>
         )}
       >
         <View style={styles.content}>
-          <View style={styles.badge}>
-            <Text
-              style={[
-                styles.badgeText
-              ]}
-            >
-              Short Story
-            </Text>
-          </View>
-
-          <Text
-            style={[styles.title]}
-          >
-            {STORY.title}
-          </Text>
-
-          <View style={styles.authorRow}>
-            <View style={styles.avatar}>
-              <SymbolView name="person.fill" size={14} tintColor="#555" />
-            </View>
-            <View>
-              <Text
-                style={[
-                  styles.author
-                ]}
-              >
-                {STORY.author}
-              </Text>
-              <Text
-                style={[
-                  styles.date
-                ]}
-              >
-                {STORY.date}
-              </Text>
-            </View>
-          </View>
+          <Text style={[styles.title]}>{TERMS.title}</Text>
 
           <View style={styles.divider} />
 
-          <Text
-            style={[styles.body ]}
-          >
-            {STORY.content}
-          </Text>
+          <Text style={[styles.body]}>{TERMS.content}</Text>
         </View>
       </AnimatedScrollProgress>
     </GestureHandlerRootView>
@@ -205,63 +168,27 @@ export default function Termos() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0a0a0a",
+    backgroundColor: theme.colors.background,
   },
   content: {
     paddingHorizontal: 24,
     paddingTop: 70,
     paddingBottom: 140,
   },
-  badge: {
-    alignSelf: "flex-start",
-    backgroundColor: "#1a1a1a",
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 8,
-    marginBottom: 16,
-  },
-  badgeText: {
-    fontSize: 12,
-    color: "#555",
-    fontWeight: "600",
-  },
   title: {
     fontSize: 36,
     fontWeight: "700",
-    color: "#fff",
+    color: theme.colors.primary,
     marginBottom: 24,
-  },
-  authorRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-  avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: "#1a1a1a",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  author: {
-    fontSize: 15,
-    color: "#fff",
-    fontWeight: "500",
-  },
-  date: {
-    fontSize: 13,
-    color: "#555",
-    marginTop: 2,
   },
   divider: {
     height: 1,
-    backgroundColor: "#1a1a1a",
+    backgroundColor: theme.colors.primary,
     marginVertical: 28,
   },
   body: {
     fontSize: 17,
-    color: "#999",
+    color: theme.colors.text,
     lineHeight: 28,
   },
   fabContent: {
@@ -277,10 +204,6 @@ const styles = StyleSheet.create({
   fabTitle: {
     fontSize: 16,
     fontWeight: "600",
-    color: "#fff",
-  },
-  fabSubtitle: {
-    fontSize: 12,
-    color: "#555",
+    color: theme.colors.background,
   },
 });
