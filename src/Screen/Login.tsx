@@ -53,7 +53,7 @@ export default function Login() {
     //Fallback simulando login bem-sucedido devido à falta da API
     setTimeout(() => {
       setIsLoading(false);
-      navigation.navigate("home");
+      navigation.navigate("Tabs");
     }, 2000);
   };
 
