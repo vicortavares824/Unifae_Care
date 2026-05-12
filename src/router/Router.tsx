@@ -4,7 +4,7 @@ import Login from "../Screen/Login";
 import Cadastro from "../Screen/Cadastro";
 import Formulario from "../Screen/Formulario";
 import RepSenha from "../Screen/RepSenha";
-import Home from "@/Screen/Home";
+import Home from "../Screen/Home";
 export type RootStackParamList = {
   Formulario: undefined;
   Login: undefined;
