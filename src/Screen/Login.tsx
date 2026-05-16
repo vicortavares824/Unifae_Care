@@ -37,8 +37,8 @@ export default function Login() {
         AsyncStorage.setItem("TOKEN", result.data.access_token);
         AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
 
-        if (result.data.consentRequired) {
-          navigation.navigate("home");
+        if (!result.data.consentRequired) {
+          navigation.replace("home");
           return;
         } else {
           navigation.navigate("Termos");
