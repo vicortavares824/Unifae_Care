@@ -36,7 +36,7 @@ export default function Cadastro() {
     //Fallback devido a falta de API
     setTimeout(() => {
       setIsLoading(false);
-      navigation.navigate("Home");
+      navigation.navigate("Tabs");
     }, 2000);
   };
 

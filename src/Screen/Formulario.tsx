@@ -5,7 +5,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Cadastro from "../Screen/Cadastro";
 import Login from "../Screen/Login";
 import { theme } from "@/styles/global";
-
+import Termos from "./Termos";
 export default function Formulario() {
   const [isCadastro, setIsCadastro] = useState(false);
 

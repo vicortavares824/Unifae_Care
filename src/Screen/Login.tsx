@@ -29,28 +29,27 @@ export default function Login() {
       appId: 1,
     };
 
-    console.log("Login payload:", payload); // Log do payload para depuração
+    console.log("Login payload:", payload); 
 
     try {
       const result = await api.post("v1/auth/login", payload);
 
       if (result.status === 201) {
         setIsLoading(false);
-        await AsyncStorage.setItem("TOKEN", result.data.access_token);
-        await AsyncStorage.setItem(
-          "CURRENT_USER",
-          JSON.stringify(result.data.user),
-        );
-
-        console.log(await AsyncStorage.getItem("TOKEN"));
-        navigation.navigate("Home");
+        AsyncStorage.setItem("TOKEN", result.data.access_token);
+        AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
+        navigation.navigate("Tabs");
       }
     } catch (e) {
       const error = e as AxiosError;
       console.error(`Login error: ${error.message}`);
     }
 
-    setIsLoading(false);
+    //Fallback simulando login bem-sucedido devido à falta da API
+    setTimeout(() => {
+      setIsLoading(false);
+      navigation.navigate("Tabs");
+    }, 2000);
   };
 
   return (
