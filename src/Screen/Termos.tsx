@@ -38,7 +38,7 @@ export default function Termos() {
 
       if (result.status === 201) {
         console.log("Consent accepted successfully", result.data);
-        navigation.replace("home");
+        navigation.replace("Tabs");
       }
     } catch (e) {
       const error = e as AxiosError;

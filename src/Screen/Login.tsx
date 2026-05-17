@@ -38,7 +38,7 @@ export default function Login() {
         AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
 
         if (!result.data.consentRequired) {
-          navigation.replace("home");
+          navigation.replace("Tabs");
           return;
         } else {
           navigation.navigate("Termos");
@@ -46,15 +46,10 @@ export default function Login() {
         }
       }
     } catch (e) {
+      setIsLoading(false);
       const error = e as AxiosError;
       console.error(`Login error: ${error.message}`);
     }
-
-    //Fallback simulando login bem-sucedido devido à falta da API
-    setTimeout(() => {
-      setIsLoading(false);
-      navigation.navigate("Tabs");
-    }, 2000);
   };
 
   return (
