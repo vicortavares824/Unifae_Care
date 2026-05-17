@@ -3,6 +3,7 @@ import Button from "@/componente/base/button";
 import { RootStackParamList } from "@/router/Router";
 import { theme } from "@/styles/global";
 import { Ionicons } from "@expo/vector-icons";
+import { RouteProp } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { useNavigation } from "expo-router";
 import { StatusBar } from "expo-status-bar";
@@ -56,12 +57,10 @@ const BORG_SCALE: BorgLevel[] = [
   },
 ];
 
+type FeedbackRouteProp = RouteProp<RootStackParamList, "Feedback">;
+
 interface FeedbackProps {
-  route?: {
-    params: {
-      executionId: number;
-    };
-  };
+  route: FeedbackRouteProp;
 }
 
 interface ErrorProps {
@@ -74,7 +73,7 @@ export default function Feedback({ route }: FeedbackProps) {
   const [selectedScore, setSelectedScore] = useState<number | null>(null);
   const [notes, setNotes] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const executionId = route?.params?.executionId || "";
+  const { executionId } = route.params;
 
   const handleSave = async () => {
     if (selectedScore === null) return;

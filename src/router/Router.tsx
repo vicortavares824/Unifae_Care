@@ -15,7 +15,7 @@ export type RootStackParamList = {
   RepSenha: undefined;
   home: undefined;
   Termos: undefined;
-  Feedback: undefined;
+  Feedback: { executionId: number };
 };
 
 const stack = createStackNavigator<RootStackParamList>();
