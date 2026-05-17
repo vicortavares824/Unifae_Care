@@ -29,8 +29,6 @@ export default function Login() {
       appId: 1,
     };
 
-    console.log("Login payload:", payload); 
-
     try {
       const result = await api.post("v1/auth/login", payload);
 
@@ -38,18 +36,20 @@ export default function Login() {
         setIsLoading(false);
         AsyncStorage.setItem("TOKEN", result.data.access_token);
         AsyncStorage.setItem("CURRENT_USER", JSON.stringify(result.data.user));
-        navigation.navigate("Tabs");
+
+        if (!result.data.consentRequired) {
+          navigation.replace("Tabs");
+          return;
+        } else {
+          navigation.navigate("Termos");
+          return;
+        }
       }
     } catch (e) {
+      setIsLoading(false);
       const error = e as AxiosError;
       console.error(`Login error: ${error.message}`);
     }
-
-    //Fallback simulando login bem-sucedido devido à falta da API
-    setTimeout(() => {
-      setIsLoading(false);
-      navigation.navigate("Tabs");
-    }, 2000);
   };
 
   return (

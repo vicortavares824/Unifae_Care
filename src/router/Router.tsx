@@ -1,10 +1,11 @@
+import Formulario from "@/Screen/Formulario";
+import Home from "@/Screen/Home";
+import Termos from "@/Screen/Termos";
 import { createStackNavigator } from "@react-navigation/stack";
-import Tabs from "../Screen/Tab";
-import Login from "../Screen/Login";
 import Cadastro from "../Screen/Cadastro";
-import Formulario from "../Screen/Formulario";
+import Login from "../Screen/Login";
 import RepSenha from "../Screen/RepSenha";
-import Home from "../Screen/Home";
+import Tabs from "../Screen/Tab";
 export type RootStackParamList = {
   Formulario: undefined;
   Login: undefined;
@@ -12,6 +13,7 @@ export type RootStackParamList = {
   Tabs: undefined;
   RepSenha: undefined;
   home: undefined;
+  Termos: undefined;
 };
 
 const stack = createStackNavigator<RootStackParamList>();
@@ -28,6 +30,7 @@ export default function Router() {
       <stack.Screen name="Tabs" component={Tabs} />
       <stack.Screen name="RepSenha" component={RepSenha} />
       <stack.Screen name="home" component={Home} />
+      <stack.Screen name="Termos" component={Termos} />
     </stack.Navigator>
   );
 }
