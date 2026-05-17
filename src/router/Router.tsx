@@ -1,3 +1,4 @@
+import Feedback from "@/Screen/Feedback";
 import Formulario from "@/Screen/Formulario";
 import Home from "@/Screen/Home";
 import Termos from "@/Screen/Termos";
@@ -14,6 +15,7 @@ export type RootStackParamList = {
   RepSenha: undefined;
   home: undefined;
   Termos: undefined;
+  Feedback: undefined;
 };
 
 const stack = createStackNavigator<RootStackParamList>();
@@ -31,6 +33,7 @@ export default function Router() {
       <stack.Screen name="RepSenha" component={RepSenha} />
       <stack.Screen name="home" component={Home} />
       <stack.Screen name="Termos" component={Termos} />
+      <stack.Screen name="Feedback" component={Feedback} />
     </stack.Navigator>
   );
 }
