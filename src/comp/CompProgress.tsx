@@ -3,11 +3,18 @@ import { View ,Text} from "react-native";
 import { CircularProgress } from "@/componente/organisms/circular-progress";
 import { useSharedValue } from "react-native-reanimated";
 import { theme } from "@/styles/global";
-interface progress{
+import { useEffect } from "react";
+interface ProgressProps{
     Progress: number
 }
-export default function compProgress({Progress}:progress){
+export default function compProgress({Progress}:ProgressProps){
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const progress = useSharedValue(Progress);
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useEffect(() => {
+    progress.value = Progress;
+  }, [Progress, progress]);
     return(
          <View style={{ width:320,height:180,borderRadius:10,backgroundColor:'#f3f3f3ff',margin:10,padding:20}}>
             <Text style={{fontSize:15,fontWeight:'bold',marginVertical:10}}>Seu Progresso</Text>

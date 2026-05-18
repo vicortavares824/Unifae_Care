@@ -5,13 +5,15 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../router/Router";
 import Ionicons from "@expo/vector-icons/Ionicons";
+
 interface CompVoltarProps {
   tile?: string;
 }
+
 export default function CompVoltar({ tile }: CompVoltarProps) {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   return (
-    <GestureHandlerRootView style={styles.container}>
+    <View style={styles.container}>
       <RadiantButton
         style={styles.button}
         textStyle={styles.radiantButtonText}
@@ -31,32 +33,27 @@ export default function CompVoltar({ tile }: CompVoltarProps) {
           </Text>
         </View>
       </RadiantButton>
-    </GestureHandlerRootView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    position: "absolute",
-    bottom: 190,
-    left: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 15,
   },
-
   button: {
     width: 120,
   },
   radiantButtonText: {
     fontSize: 0,
   },
-
   row: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     gap: 14,
   },
-
   text: {
     fontSize: 10,
     color: "#fff",
