@@ -46,6 +46,7 @@ export default function Login() {
         }
       }
     } catch (e) {
+         navigation.replace("Tabs");
       setIsLoading(false);
       const error = e as AxiosError;
       console.error(`Login error: ${error.message}`);

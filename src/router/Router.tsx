@@ -7,6 +7,7 @@ import Cadastro from "../Screen/Cadastro";
 import Login from "../Screen/Login";
 import RepSenha from "../Screen/RepSenha";
 import Tabs from "../Screen/Tab";
+import Exercicios from "@/Screen/Exercicios";
 export type RootStackParamList = {
   Formulario: undefined;
   Login: undefined;
@@ -16,6 +17,7 @@ export type RootStackParamList = {
   home: undefined;
   Termos: undefined;
   Feedback: { executionId: number };
+  Exercicios:  { prescriptionItemId: number };
 };
 
 const stack = createStackNavigator<RootStackParamList>();
@@ -34,6 +36,8 @@ export default function Router() {
       <stack.Screen name="home" component={Home} />
       <stack.Screen name="Termos" component={Termos} />
       <stack.Screen name="Feedback" component={Feedback} />
+      <stack.Screen name="Exercicios" component={Exercicios} />
+
     </stack.Navigator>
   );
 }
