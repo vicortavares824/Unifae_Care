@@ -1,36 +1,16 @@
-import GooeySwitch from "@/componente/micro-interactions/gooey-switch";
-import React, { useState } from "react";
+import { theme } from "@/styles/global";
+import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import Cadastro from "../Screen/Cadastro";
 import Login from "../Screen/Login";
-import { theme } from "@/styles/global";
-import Termos from "./Termos";
 export default function Formulario() {
-  const [isCadastro, setIsCadastro] = useState(false);
-
   return (
     <GestureHandlerRootView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>Seja Bem-vindo</Text>
         <Text style={styles.title}>A UNIFAE Care</Text>
-        <GooeySwitch
-          active={isCadastro}
-          onToggle={setIsCadastro}
-          activeColor={theme.colors.primary}
-          size={150}
-          trackColor={theme.colors.background}
-          gooey={35}
-          deformation={{
-            squishY: 0.5,
-            stretchX: 1.2,
-          }}
-        />
       </View>
-
-      <View style={styles.content}>
-        {isCadastro ? <Cadastro /> : <Login />}
-      </View>
+      <Login />
     </GestureHandlerRootView>
   );
 }
@@ -42,6 +22,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingTop: 60,
+    paddingBottom: 30,
     alignItems: "center",
     zIndex: 10,
   },
