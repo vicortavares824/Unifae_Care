@@ -1,4 +1,5 @@
-import { View, StyleSheet, Image, Text } from "react-native";
+import { theme } from "@/styles/global";
+import { Image, StyleSheet, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { FadeText } from "../componente/organisms/fade-text";
 import CompVoltar from "./CompVoltar";
@@ -13,14 +14,15 @@ export default function RepTop(): React.JSX.Element {
 
   return (
     <GestureHandlerRootView style={styles.container}>
+      <CompVoltar tile="UNIFAE Care" />
       <View
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 50,
+          marginTop: 10,
+          gap: 10,
         }}
       >
-        <CompVoltar tile="UNIFAE Care" />
         <Image
           source={require("../../assets/images/Fae_Logo.jpg")}
           style={styles.logo}
@@ -33,7 +35,7 @@ export default function RepTop(): React.JSX.Element {
           style={{
             fontFamily: "SfProRounded",
             fontSize: 24,
-            color: "#000000ff",
+            color: theme.colors.white,
             fontWeight: "bold",
           }}
         />
@@ -45,7 +47,7 @@ export default function RepTop(): React.JSX.Element {
           style={{
             fontFamily: "SfProRounded",
             fontSize: 18,
-            color: "#ffffff",
+            color: theme.colors.white,
           }}
         />
       </View>
@@ -54,13 +56,10 @@ export default function RepTop(): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+  container: {},
   logo: {
     width: 100,
     height: 100,
-    borderRadius: 60,
-    marginBottom: 20,
+    borderRadius: 50,
   },
 });

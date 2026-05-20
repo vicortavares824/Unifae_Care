@@ -46,7 +46,6 @@ export default function Login() {
         }
       }
     } catch (e) {
-         navigation.replace("Tabs");
       setIsLoading(false);
       const error = e as AxiosError;
       console.error(`Login error: ${error.message}`);
@@ -99,12 +98,12 @@ export default function Login() {
     </View>
   );
 }
+
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     justifyContent: "center",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderRadius: 20,
     borderColor: theme.colors.border,
     borderWidth: 0.7,
     backgroundColor: theme.colors.background,
