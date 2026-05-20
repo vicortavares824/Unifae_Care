@@ -1,19 +1,16 @@
-import React, { useState } from "react";
-import Botao from "@/componente/base/button";
-import { StyleSheet, Text, View } from "react-native";
-import Form from "@/componente/organisms/form";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import { RootStackParamList } from "../router/Router";
-import { theme } from "@/styles/global";
+import { api } from "@/api/api";
 import RepTop from "@/comp/RepTop";
+import Botao from "@/componente/base/button";
+import Form from "@/componente/organisms/form";
+import { theme } from "@/styles/global";
+import { AxiosError } from "axios";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { FadeText } from "../componente/organisms/fade-text";
-import { api } from "@/api/api";
 
 export default function RepSenha() {
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [email, setEmail] = useState("");
 
   const handlePasswordRecovery = async () => {
@@ -26,17 +23,13 @@ export default function RepSenha() {
     console.log("Password recovery payload:", payload);
 
     try {
-      const result = await api.post("v1/auth/recover-forgot-password", payload);
-      console.log("Password recovery result:", result);
+      const result = await api.post("v1/auth/forgot-password", payload);
+      console.log("Password recovery result:", result.data);
     } catch (e) {
-      const error = e as Error;
+      setIsLoading(false);
+      const error = e as AxiosError;
       console.error(`Error: ${error.message}`);
     }
-
-    //Fallback devido a falta de API
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
   };
 
   const INPUTS: string[] = [
@@ -104,17 +97,24 @@ export default function RepSenha() {
   );
 }
 const styles = StyleSheet.create({
+  fundo: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: theme.colors.primary,
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    gap: 20,
+  },
   container: {
     alignItems: "center",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderRadius: 20,
     borderColor: theme.colors.border,
     borderWidth: 0.7,
     backgroundColor: theme.colors.background,
     width: "90%",
     height: 250,
     paddingTop: 40,
-    marginBottom: 40,
   },
   container2: {
     borderRadius: 20,
@@ -124,15 +124,5 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 160,
     paddingTop: 20,
-    marginBottom: 60,
-    alignItems: "flex-start",
-  },
-
-  fundo: {
-    width: "100%",
-    height: "100%",
-    backgroundColor: theme.colors.primary,
-    alignItems: "center",
-    justifyContent: "space-between",
   },
 });
