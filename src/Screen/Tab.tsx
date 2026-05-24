@@ -1,12 +1,14 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { CurvedBottomTabs } from "@/componente/base/curved-bottom-tabs";
 import { theme } from "@/styles/global";
-import Perfil from "./Perfil";
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import Calendario from "./Calendario";
 import Home from "./Home";
+import Perfil from "./Perfil";
+import Progresso from "./Progresso";
 const Tab = createBottomTabNavigator();
 
 function ScreenPlaceholder({ name, color }: { name: string; color: string }) {
@@ -31,7 +33,7 @@ export default function Tabs() {
         <Tab.Screen
           name="Início"
           component={() => (
-            <Home/>
+            <Home />
           )}
           options={{
             title: "Início",
@@ -46,9 +48,7 @@ export default function Tabs() {
         />
         <Tab.Screen
           name="Agenda"
-          component={() => (
-            <ScreenPlaceholder name="Agenda" color={theme.colors.white} />
-          )}
+          component={Calendario}
           options={{
             title: "Agenda",
             tabBarIcon: ({ focused }) => (
@@ -63,7 +63,7 @@ export default function Tabs() {
         <Tab.Screen
           name="Progressos"
           component={() => (
-            <ScreenPlaceholder name="Progressos" color={theme.colors.white} />
+            <Progresso Progress={30} />
           )}
           options={{
             title: "Progressos",

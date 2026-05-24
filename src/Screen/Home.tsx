@@ -14,7 +14,7 @@ export default function Home() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const handleExercicios = async () => {
     try {
-      navigation.navigate("Exercicios");
+      navigation.navigate("Exercicios", {prescriptionItemId: 1} );
     } catch (e) {
       console.error(`Login error: ${e instanceof Error ? e.message : e}`);
     }
@@ -61,5 +61,6 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     flexDirection: "column",
     height: "100%",
+    paddingBottom:100
   },
 });
