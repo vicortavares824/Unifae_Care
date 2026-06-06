@@ -15,8 +15,8 @@ import { RootStackParamList } from "../router/Router";
 export default function Login() {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [isLoading, setIsLoading] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("paciente1@unifae.local");
+  const [password, setPassword] = useState("Admin@123");
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleLogin = async () => {
