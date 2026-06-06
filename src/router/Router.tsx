@@ -21,7 +21,7 @@ export type RootStackParamList = {
   Feedback: { executionId: number };
   Exercicios:  { prescriptionItemId: number };
   Calendario: undefined;
-  Progressao: undefined;
+  Progressao: { Progress: number };
 };
 
 const stack = createStackNavigator<RootStackParamList>();
