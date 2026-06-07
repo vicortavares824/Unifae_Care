@@ -63,6 +63,15 @@ export interface Execution {
   feedbackPending: boolean;
 }
 
+export interface CompletionResponse {
+  executionId: number;
+  prescriptionId: number;
+  prescriptionItemId: number;
+  exerciseId: number;
+  performedAt: string;
+  message: string;
+}
+
 export type Appointment = Record<string, any>;
 
 export default Plan;

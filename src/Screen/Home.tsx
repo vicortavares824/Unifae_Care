@@ -1,54 +1,47 @@
+import { api } from "@/api/api";
 import CompHeader from "@/comp/CompHeader";
-import CompMeio from "@/comp/CompMeio";
 import CompProgress from "@/comp/CompProgress";
-import Botao from "@/componente/base/button";
+import ExercisePlan from "@/comp/ExercisePlan";
 import { theme } from "@/styles/global";
-import { useNavigation } from "@react-navigation/native";
-import { StackNavigationProp } from "@react-navigation/stack";
-import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { RootStackParamList } from "../router/Router";
+import { Day } from "@/types/plan.type";
+import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const handleExercicios = async () => {
-    try {
-      navigation.navigate("Exercicios", {prescriptionItemId: 1} );
-    } catch (e) {
-      console.error(`Login error: ${e instanceof Error ? e.message : e}`);
+  const [planData, setPlanData] = useState<Day | null>(null);
+
+  useEffect(function fetchTodayPlan() {
+    async function getTodayPlan() {
+      try {
+        const response = await api.get<Day>("/v1/app/home/plan/today");
+
+        const todayPlan = response.data;
+
+        setPlanData(todayPlan);
+      } catch (error) {
+        console.error("Failed to fetch today's plan data");
+        console.log(error);
+      }
     }
-  };
+
+    getTodayPlan();
+  }, []);
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
         <CompHeader />
         <View style={{ justifyContent: "center", alignItems: "center" }}>
-          <CompMeio />
           <View
             style={{
               justifyContent: "center",
               alignItems: "center",
               marginVertical: 10,
             }}
-          >
-            <Botao
-              backgroundColor={theme.colors.primary}
-              width={270}
-              isLoading={isLoading}
-              loadingText="Carregando Exercicio..."
-              onPress={handleExercicios}
-              showLoadingIndicator
-              style={{ alignSelf: "center" }}
-            >
-              <Text style={{ color: theme.colors.white, fontWeight: "bold" }}>
-                Iniciar Exercicios
-              </Text>
-            </Botao>
-          </View>
-          <CompProgress Progress={10} />
+          ></View>
+          <CompProgress Progress={planData?.summary.percentCompleted || 0} />
         </View>
+        <ExercisePlan exercises={planData?.exercises || []} />
       </View>
     </ScrollView>
   );
@@ -61,6 +54,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.white,
     flexDirection: "column",
     height: "100%",
-    paddingBottom:100
+    paddingBottom: 100,
+    justifyContent: "flex-start",
+    alignItems: "center",
   },
 });

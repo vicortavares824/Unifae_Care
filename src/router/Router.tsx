@@ -1,15 +1,16 @@
+import Calendario from "@/Screen/Calendario";
+import Exercicios from "@/Screen/Exercicios";
 import Feedback from "@/Screen/Feedback";
 import Formulario from "@/Screen/Formulario";
 import Home from "@/Screen/Home";
+import Progressao from "@/Screen/Progresso";
 import Termos from "@/Screen/Termos";
+import { Exercise } from "@/types/plan.type";
 import { createStackNavigator } from "@react-navigation/stack";
 import Cadastro from "../Screen/Cadastro";
 import Login from "../Screen/Login";
 import RepSenha from "../Screen/RepSenha";
 import Tabs from "../Screen/Tab";
-import Exercicios from "@/Screen/Exercicios";
-import Calendario from "@/Screen/Calendario";
-import Progressao from "@/Screen/Progresso";
 export type RootStackParamList = {
   Formulario: undefined;
   Login: undefined;
@@ -19,7 +20,7 @@ export type RootStackParamList = {
   home: undefined;
   Termos: undefined;
   Feedback: { executionId: number };
-  Exercicios:  { prescriptionItemId: number };
+  Exercicios: { exercise: Exercise };
   Calendario: undefined;
   Progressao: { Progress: number };
 };
