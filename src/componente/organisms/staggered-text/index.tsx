@@ -1,22 +1,31 @@
-import React, { memo, useEffect, useMemo, useRef } from "react";
-import { View, StyleSheet, Platform } from "react-native";
 import {
+  Blur,
   Canvas,
+  Group,
+  matchFont,
+  SkFont,
   Text as SkiaText,
   useFont,
-  matchFont,
-  Blur,
-  Group,
-  SkFont,
 } from "@shopify/react-native-skia";
+import React, { memo, useEffect, useMemo, useRef } from "react";
+import { Platform, StyleSheet, View } from "react-native";
 import {
-  useSharedValue,
-  withTiming,
-  withDelay,
-  useDerivedValue,
-  interpolate,
   cancelAnimation,
+  interpolate,
+  useDerivedValue,
+  useSharedValue,
+  withDelay,
+  withTiming,
 } from "react-native-reanimated";
+import { merge } from "./base";
+import {
+  DEFAULT_CONFIG,
+  DEFAULT_ENTER_FROM,
+  DEFAULT_ENTER_TO,
+  DEFAULT_EXIT_FROM,
+  DEFAULT_EXIT_TO,
+} from "./const";
+import { withBuildCharacterMetrics } from "./helper";
 import type {
   IAnimationConfig,
   ICharacterAnimationParams,
@@ -26,15 +35,6 @@ import type {
   IStaggeredText,
   ITransitionCharacter,
 } from "./types";
-import { withBuildCharacterMetrics } from "./helper";
-import { merge } from "./base";
-import {
-  DEFAULT_CONFIG,
-  DEFAULT_ENTER_FROM,
-  DEFAULT_ENTER_TO,
-  DEFAULT_EXIT_FROM,
-  DEFAULT_EXIT_TO,
-} from "./const";
 
 const CharRenderer: React.FC<ICharacterRenderer<SkFont>> &
   React.FunctionComponent<ICharacterRenderer<SkFont>> = memo<

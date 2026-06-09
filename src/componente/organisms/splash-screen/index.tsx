@@ -1,4 +1,5 @@
 import StaggeredText from "@/componente/organisms/staggered-text";
+import { theme } from "@/styles/global";
 import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Animated, {
@@ -8,7 +9,6 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { theme } from "@/styles/global";
 const TEXTS: string[] = [
   "Recupere_sua_mobilidade",
   "Melhore_sua_saúde",

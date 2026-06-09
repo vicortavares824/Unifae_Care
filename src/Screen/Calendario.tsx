@@ -1,8 +1,11 @@
 import { api } from "@/api/api";
+import { RootStackParamList } from "@/router/Router";
 import { theme } from "@/styles/global";
-import { Plan } from "@/types/plan.type";
+import { Exercise, Plan } from "@/types/plan.type";
 import { DATE_LOCALE } from "@/utils/locale/date-locale";
 import { Ionicons } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useNavigation } from "expo-router";
 import React, { useEffect, useState } from "react";
 import {
   ScrollView,
@@ -17,8 +20,10 @@ LocaleConfig.locales = DATE_LOCALE;
 LocaleConfig.defaultLocale = "pt-br";
 
 export default function Calendario() {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+
   const [selectedDate, setSelectedDate] = useState("");
-  const [planData, setPlanData] = useState<Record<string, string[]>>({});
+  const [planData, setPlanData] = useState<Record<string, Exercise[]>>({});
   const formatSelectedDate = (dateString: string) => {
     if (!dateString) return "";
     const [year, month, day] = dateString.split("-");
@@ -33,10 +38,7 @@ export default function Calendario() {
         const response = await api.get<Plan>("/v1/app/home/plan/week");
 
         const plan = Object.fromEntries(
-          response.data.days.map((day) => [
-            day.date,
-            day.exercises.map((ex) => ex.title),
-          ]),
+          response.data.days.map((day) => [day.date, day.exercises]),
         );
 
         setPlanData(plan);
@@ -49,6 +51,14 @@ export default function Calendario() {
 
     getWeeklyPlan();
   }, []);
+
+  function handleExerciseClick(exercise: Exercise) {
+    console.log("Exercise clicked:", exercise);
+
+    navigation.navigate("Exercicios", {
+      exercise: exercise,
+    });
+  }
 
   const getExercisesForDate = (dateString: string) => {
     return planData?.[dateString] || [];
@@ -134,10 +144,18 @@ export default function Calendario() {
         {getExercisesForDate(selectedDate).map((exercise, index) => (
           <TouchableOpacity
             key={index}
-            style={styles.exerciseCard}
+            style={[
+              styles.exerciseCard,
+              {
+                backgroundColor: exercise.execution.completed
+                  ? theme.colors.primary
+                  : theme.colors.unfocused,
+              },
+            ]}
+            onPress={() => handleExerciseClick(exercise)}
             activeOpacity={0.8}
           >
-            <Text style={styles.exerciseText}>{exercise}</Text>
+            <Text style={styles.exerciseText}>{exercise.title}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -187,7 +205,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   exerciseCard: {
-    backgroundColor: theme.colors.primary,
     borderRadius: 30,
     paddingVertical: 18,
     paddingHorizontal: 24,
