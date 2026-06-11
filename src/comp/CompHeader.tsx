@@ -6,7 +6,13 @@ const INPUTS: string[] = [
   "Seu cuidado diário faz toda a diferença na recuperação!",
 ];
 const INPUTS1: string[] = ["Olá, Ana! "];
-export default function CompHeader() {
+
+interface CompHeaderProps {
+  title: string;
+  description: string;
+}
+
+export default function CompHeader({ title, description }: CompHeaderProps) {
   return (
     <View style={{ flexDirection: "row", marginHorizontal: 10 }}>
       <View
@@ -18,7 +24,7 @@ export default function CompHeader() {
         }}
       >
         <FadeText
-          inputs={INPUTS1}
+          inputs={[title]}
           duration={3500}
           wordDelay={300}
           blurTint="extraLight"
@@ -30,7 +36,7 @@ export default function CompHeader() {
           }}
         />
         <FadeText
-          inputs={INPUTS}
+          inputs={[description]}
           duration={3500}
           wordDelay={300}
           blurTint="extraLight"

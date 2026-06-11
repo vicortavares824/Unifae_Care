@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <View style={styles.container}>
-        <CompHeader />
+        <CompHeader title={`Olá, Maria!`} description="Bem-vindo de volta!" />
         <View style={{ justifyContent: "center", alignItems: "center" }}>
           <View
             style={{
